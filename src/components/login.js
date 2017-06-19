@@ -25,8 +25,8 @@ export default class Login extends Component {
                 <Card shadow={0} style={{width: '512px', margin: 'auto'}}>
                     <form id="login" onSubmit={this.handleSubmit}>
                     <CardText>
-                            <Textfield name="username" value={this.state.username} onChange={this.handleInputChange} label="Username" />
-                            <Textfield name="password" value={this.state.password} onChange={this.handleInputChange} label="Password" type="password"/>
+                        <Textfield name="username" value={this.state.username} onChange={this.handleInputChange} label="Username" autoComplete="off" />
+                        <Textfield name="password" value={this.state.password} onChange={this.handleInputChange} label="Password" type="password" autoComplete="off"/>
                     </CardText>
                     <CardActions border>
                         <Button colored>Login</Button>
