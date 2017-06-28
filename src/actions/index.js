@@ -36,6 +36,8 @@ export function signinUser({username, password}) {
     }
 }
 
+// TODO: If we wrap this function within a Promise, we can call the ".then" function
+// to call signinUser action on success. See other "TODO" comment below.
 export function signupUser({username, password}) {
     let body = {
         username,
@@ -50,6 +52,7 @@ export function signupUser({username, password}) {
                 body.append('user', username);
                 body.append('password', password);
                 axios.post(`${API_URL}/authenticate/user`, body)
+                    // TODO: If we wrap this function within a Promise, we dont need this.
                     .then(response => {
                         dispatch({ type: AUTH_USER });
                         localStorage.setItem('token', response.data.token);
