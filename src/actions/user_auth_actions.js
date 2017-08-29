@@ -15,6 +15,8 @@ export const signupUser = user => dispatch => {
     error => dispatch(recieveErrors(error)))
 }
 
+// TODO: signoutUser
+
 export const receiveCurrentUser = (currentUser) => {
   return {
     type: RECEIVE_CURRENT_USER,
