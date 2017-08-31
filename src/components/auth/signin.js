@@ -13,7 +13,6 @@ class Signin extends Component {
     
     handleSubmit(e) {
 				e.preventDefault();
-				debugger
         this.props.signinUser({
 					user: this.state.username, 
 					password: this.state.password

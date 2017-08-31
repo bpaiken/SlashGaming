@@ -12,17 +12,17 @@ class Feature extends Component {
     // }
 
     render() {
-        // return (
-        //     <div>{this.props.message}</div>
-        // );
         return (
-            <div>If you see this, you are AUTHED</div>
+            <div>
+                <div>{this.props.message}</div>
+                <div>If you see this, you are AUTHED</div>
+            </div>
         );
     }
 }
 
 function mapStateToProps(state) {
-    return { message: state.auth.message };
+    return { message: state.currentUser.username};
 }
 
 export default connect(mapStateToProps, actions)(Feature);
