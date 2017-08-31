@@ -12,9 +12,10 @@ class Signin extends Component {
     }
     
     handleSubmit(e) {
-        e.preventDefault();
+				e.preventDefault();
+				debugger
         this.props.signinUser({
-					username: this.state.username, 
+					user: this.state.username, 
 					password: this.state.password
 				})
     }
@@ -54,13 +55,22 @@ class Signin extends Component {
 }
 
 ///// CONTAINER /////
-import * as actions from '../../actions';
+// import * as actions from '../../actions';
+import { signinUser } from '../../actions/user_auth_actions'
 import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
     return { errorMessage: '' }; // TODO: update with error slice of state
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    signinUser: user => dispatch(signinUser(user))
+  }
+}
 
-export default connect(mapStateToProps, actions)(Signin);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps)
+(Signin);
 

@@ -2,9 +2,10 @@ import axios from 'axios'
 
 const API_URL = 'http://localhost:8090'
 
-export const signinUser = ({username, password}) => {
+export const signinUser = ({user, password}) => {
+  debugger
   return axios.post(`${API_URL}/api/authenticate/user`, 
-  { username, password })
+  { user, password })
 }
 
 export const signupUser = ({username, password}) => {

@@ -6,6 +6,7 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS'
 
 
 export const signinUser = user => dispatch => {
+  debugger
   return APIUtil.signinUser(user)
   .then(currentUser => dispatch(receiveCurrentUser(currentUser)),
     error => dispatch(recieveErrors(error)))
