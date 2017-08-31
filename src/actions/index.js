@@ -18,7 +18,7 @@ export function signinUser({username, password}) {
 
     return function (dispatch) {
         // Submit username/password to server
-        axios.post(`${API_URL}/authenticate/user`, body)
+        axios.post(`${API_URL}/api/authenticate/user`, body)
             .then(response => {
                 // If request is good...
                 // - Update state to indicate user is authenticated
@@ -44,14 +44,14 @@ export function signupUser({username, password}) {
         password
     }
     return function (dispatch) {
-        axios.post(`${API_URL}/register/user`, body)
+        axios.post(`${API_URL}/api/users`, body)
             .then(response => {
                 // Create form-data object for API
                 // Log user in to get token.
                 let body = new FormData();
                 body.append('user', username);
                 body.append('password', password);
-                axios.post(`${API_URL}/authenticate/user`, body)
+                axios.post(`${API_URL}/api/users`, body)
                     // TODO: If we wrap this function within a Promise, we dont need this.
                     .then(response => {
                         dispatch({ type: AUTH_USER });
@@ -88,7 +88,7 @@ export function verifyCharacter() {
     // header should be sent.
 
     return function (dispatch) {
-        axios.post(`${API_URL}/verify/character`, body, {
+        axios.post(`${API_URL}/api/verify/character`, body, {
             headers:
             {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
