@@ -1,21 +1,24 @@
-import {
-    AUTH_USER,
-    UNAUTH_USER,
-    AUTH_ERROR,
-    VALIDATE_USER
-} from '../actions/types';
+import { RECEIVE_CURRENT_USER } from '../actions/user_auth_actions'
+import merge from 'lodash/merge'
 
-export default function (state = {}, action) {
-    switch (action.type) {
-        case AUTH_USER:
-            return { ...state, error: '', authenticated: true };
-        case UNAUTH_USER:
-            return { ...state, error: '', authenticated: false };
-        case AUTH_ERROR:
-            return { ...state, error: action.payload }
-        case VALIDATE_USER:
-            return { ...state, message: action.payload }
+const initialState = {
+        id: null,
+        username: '',
+        role: ''
     }
 
-    return state;
+const authReducer = (state = initialState, action) => {
+  Object.freeze(state)
+  let currentState = merge({}, state);
+  switch (action.type) {
+
+    case RECEIVE_CURRENT_USER: 
+			// might need to clear out previous user info here
+			return merge(currentState, action.current_user)
+		
+			default:
+      return state;
+  }
 }
+
+export default authReducer

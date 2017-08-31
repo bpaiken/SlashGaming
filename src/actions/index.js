@@ -51,7 +51,7 @@ export function signupUser({username, password}) {
                 let body = new FormData();
                 body.append('user', username);
                 body.append('password', password);
-                axios.post(`${API_URL}/api/users`, body)
+                axios.post(`${API_URL}/api/authenticate/user`, body)
                     // TODO: If we wrap this function within a Promise, we dont need this.
                     .then(response => {
                         dispatch({ type: AUTH_USER });

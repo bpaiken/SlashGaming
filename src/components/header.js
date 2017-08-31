@@ -12,7 +12,7 @@ class Header extends Component {
 	}
 	
 	onChange(id) {
-		if (this.props.authenticated) {
+		if (this.props.currentUser.id) {
 			switch (id) {
 				case 1:
 				this.props.history.push('/signout');
@@ -44,7 +44,7 @@ class Header extends Component {
 	}
 	
 	renderNav() {
-		if (this.props.authenticated) {
+		if (this.props.currentUser.id) {
 			// show links when authed
 			return [
 				<Tab component={Link} key={1} to='/signout'>Sign Out</Tab>,
@@ -75,9 +75,9 @@ class Header extends Component {
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 
-function mapStateToProps(state) {
+function mapStateToProps({ currentUser }) {
 	return {
-		authenticated: state.auth.authenticated
+		currentUser
 	};
 }
 

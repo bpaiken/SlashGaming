@@ -1,7 +1,9 @@
 import * as APIUtil from '../util/user_auth_util'
+import axios from 'axios'
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER'
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS'
 export const CLEAR_ERRORS = 'CLEAR_ERRORS'
+
 
 export const signinUser = user => dispatch => {
   return APIUtil.signinUser(user)
@@ -17,10 +19,11 @@ export const signupUser = user => dispatch => {
 
 // TODO: signoutUser
 
-export const receiveCurrentUser = (currentUser) => {
+export const receiveCurrentUser = ({ current_user }) => {
+  // response is under key 'current_user' vice currentUser
   return {
     type: RECEIVE_CURRENT_USER,
-    currentUser,
+    current_user,
   }
 }
 
