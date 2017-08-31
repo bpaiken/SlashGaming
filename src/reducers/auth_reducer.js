@@ -1,10 +1,20 @@
-import { RECEIVE_CURRENT_USER } from '../actions/user_auth_actions'
+import { 
+  RECEIVE_CURRENT_USER,
+  SIGNOUT_CURRENT_USER
+} from '../actions/user_auth_actions'
 import merge from 'lodash/merge'
 
+// const initialState = {
+//   id: null,
+//   username: '',
+//   role: ''
+// }
+
+// Below initial state is for testing only
 const initialState = {
-        id: null,
-        username: '',
-        role: ''
+        id: 1,
+        username: 'Seirif',
+        role: 'user'
     }
 
 const authReducer = (state = initialState, action) => {
@@ -15,7 +25,10 @@ const authReducer = (state = initialState, action) => {
     case RECEIVE_CURRENT_USER: 
 			// might need to clear out previous user info here
 			return merge(currentState, action.current_user)
-		
+    
+    case SIGNOUT_CURRENT_USER: 
+      return merge(currentState, action.current_user)  
+
 			default:
       return state;
   }
