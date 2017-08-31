@@ -4,6 +4,7 @@ import Signup from './auth/signup'
 import Signin from './auth/signin'
 import Signout from './auth/signout'
 import { Route, Switch } from 'react-router-dom'
+import RequireAuth from './auth/require_auth'
 import Feature from './feature.js'
 
 // export default class App extends Component {
@@ -23,8 +24,8 @@ export default () => {
       <Header />
       {/* <Sidebar /> */}
       <Switch>
-        <Route  path= '/signup'/>
-        <Route  path= '/signin'/>
+        <Route  path='/signup' component={ Signup } />
+        <Route  path='/signin' component={ Signin } />
         {/* <Route  path= '/signout'/>  is signout route/component needed? */}
         <Route path ='/feature' component={ RequireAuth(Feature) } />
       </Switch>
