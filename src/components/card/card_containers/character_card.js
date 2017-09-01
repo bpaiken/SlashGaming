@@ -6,7 +6,7 @@ const mapStateToProps = () => {
     cardTitle: 'Characters',
     cardText: 'Register your in game characters to compete in events',
     buttonText: 'View All Your Characters',
-    indexUrl: '/characters'
+    indexUrl: '/user/characters'
   }
 }
 
