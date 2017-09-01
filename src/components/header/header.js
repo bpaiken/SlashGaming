@@ -24,7 +24,7 @@ class Header extends Component {
 				break;
 					
 				default:
-				this.props.history.push('/');
+				this.props.history.push('/dashboard');
 			}
 			
 		} else {
@@ -63,7 +63,7 @@ class Header extends Component {
 		return (
 			<div>
 								<Tabs ripple id="header" activeTab={this.state.active} onChange={this.onChange.bind(this)}>
-										<Tab component={Link} className="header-tab" id="home-tab" active to="/">Home</Tab>
+										<Tab component={Link} className="header-tab" id="home-tab" active to="/dashboard">Home</Tab>
 										{this.renderNav()}
 								</Tabs>
 						</div>
@@ -71,7 +71,6 @@ class Header extends Component {
 			}
 		}
 		
-
 ///// CONTAINER /////
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
