@@ -16,7 +16,10 @@ class Signin extends Component {
         this.props.signinUser({
 					username: this.state.username, 
 					password: this.state.password
-				})
+                })
+        .then(() => {
+            this.props.history.push('/dashboard')
+        })
     }
     
     handleError() {
@@ -57,6 +60,7 @@ class Signin extends Component {
 // import * as actions from '../../actions';
 import { signinUser } from '../../actions/user_auth_actions'
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 
 function mapStateToProps(state) {
     return { errorMessage: '' }; // TODO: update with error slice of state
@@ -68,8 +72,8 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(
+export default withRouter(connect(
 	mapStateToProps,
 	mapDispatchToProps)
-(Signin);
+(Signin))
 
