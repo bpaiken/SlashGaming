@@ -1,0 +1,9 @@
+.dash-card {
+  width: 400px;
+}
+
+.dash-card-title {
+  height: 175px;
+  background-color: black;
+  color: whitesmoke;
+}
