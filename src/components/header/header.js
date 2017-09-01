@@ -16,7 +16,8 @@ class Header extends Component {
 		if (this.props.currentUser.id) {
 			switch (id) {
 				case 1:
-				this.props.history.push('/signout');
+				this.props.signoutUser()
+				this.props.history.push('/signin');
 				break;
 				
 				case 2:
@@ -46,9 +47,9 @@ class Header extends Component {
 	
 	renderNav() {
 		if (this.props.currentUser.id) {
-			// show links when authed
+			// show links when authedy.push('/signout')
 			return [
-				<Tab component={Link} className="header-tab" key={1} to='/signout'>Sign Out</Tab>,
+				<Tab component={Link} className="header-tab" key={1} to='/signin'>Sign Out</Tab>,
 				<Tab component={Link} className="header-tab" key={2} to='/feature'>{this.props.currentUser.username}</Tab>, //TODO: This should be username
 			]
 		} else {
@@ -74,6 +75,7 @@ class Header extends Component {
 ///// CONTAINER /////
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
+import { signoutUser } from '../../actions/user_auth_actions'
 
 function mapStateToProps({ currentUser }) {
 	return {
@@ -81,4 +83,13 @@ function mapStateToProps({ currentUser }) {
 	};
 }
 
-export default withRouter(connect(mapStateToProps)(Header))
+const mapDispatchToProps = dispatch => {
+	return {
+		signoutUser: () => dispatch(signoutUser())
+	}
+}
+
+export default withRouter(connect(
+	mapStateToProps,
+	mapDispatchToProps)
+	(Header))

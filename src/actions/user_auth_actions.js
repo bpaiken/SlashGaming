@@ -27,8 +27,8 @@ export const signupUser = user => dispatch => {
     error => dispatch(recieveErrors(error)))
 }
 
-export const signout = () => (dispatch) => {
-  return APIUtil.signoutUser().then(() => dispatch(signoutCurrentUser(nullUser)));
+export const signoutUser = () => (dispatch) => {
+  return dispatch(signoutCurrentUser(nullUser));
 };
 
 export const receiveCurrentUser = ({ currentUser }) => {
@@ -42,7 +42,7 @@ export const receiveCurrentUser = ({ currentUser }) => {
 export const signoutCurrentUser = (nullUser) => {
   return {
     type: SIGNOUT_CURRENT_USER,
-    current_user: nullUser
+    currentUser: nullUser
   }
 }
 

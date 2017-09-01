@@ -12,7 +12,7 @@ export const signupUser = ({username, password}) => {
    { username, password })
 }
 
-// Placeholder - awaiting API endpoint
-export const signoutUser = () => {
-  return null
-}
+// // Placeholder - awaiting API endpoint
+// export const signoutUser = () => {
+//   return null
+// }
