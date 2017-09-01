@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Header from './header'
+import Header from './header/header'
 import Signup from './auth/signup'
 import Signin from './auth/signin'
 import Signout from './auth/signout'

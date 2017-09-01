@@ -24,10 +24,10 @@ const authReducer = (state = initialState, action) => {
 
     case RECEIVE_CURRENT_USER: 
 			// might need to clear out previous user info here
-			return merge(currentState, action.current_user)
+			return merge(currentState, action.currentUser)
     
     case SIGNOUT_CURRENT_USER: 
-      return merge(currentState, action.current_user)  
+      return merge(currentState, action.currentUser)  
 
 			default:
       return state;

@@ -31,11 +31,11 @@ export const signout = () => (dispatch) => {
   return APIUtil.signoutUser().then(() => dispatch(signoutCurrentUser(nullUser)));
 };
 
-export const receiveCurrentUser = ({ current_user }) => {
+export const receiveCurrentUser = ({ currentUser }) => {
   // response is under key 'current_user' vice currentUser
   return {
     type: RECEIVE_CURRENT_USER,
-    current_user,
+    currentUser,
   }
 }
 
