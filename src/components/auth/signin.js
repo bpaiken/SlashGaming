@@ -14,7 +14,7 @@ class Signin extends Component {
     handleSubmit(e) {
 				e.preventDefault();
         this.props.signinUser({
-					user: this.state.username, 
+					username: this.state.username, 
 					password: this.state.password
 				})
     }

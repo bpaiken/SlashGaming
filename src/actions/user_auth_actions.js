@@ -13,13 +13,17 @@ const nullUser = {
 
 export const signinUser = user => dispatch => {
   return APIUtil.signinUser(user)
-  .then(currentUser => dispatch(receiveCurrentUser(currentUser)),
+  .then(response => {
+    localStorage.setItem('token', response.data.token)
+    return dispatch(receiveCurrentUser(response.data))
+  },
     error => dispatch(recieveErrors(error)))
 }
 
+// as of right now, signup user does not automatically login user
 export const signupUser = user => dispatch => {
   return APIUtil.signupUser(user)
-  .then(currentUser => dispatch(receiveCurrentUser(currentUser)),
+  .then(response => dispatch(receiveCurrentUser(response)), // this does nothing as of right now
     error => dispatch(recieveErrors(error)))
 }
 
