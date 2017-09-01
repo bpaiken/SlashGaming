@@ -7,6 +7,7 @@ import { Route, Switch } from 'react-router-dom'
 import RequireAuth from './auth/require_auth'
 import Feature from './feature.js'
 import Dashboard from './dashboard/dashboard.jsx'
+import Characters from './characters/characters.jsx'
 
 // export default class App extends Component {
 //   render() {
@@ -28,8 +29,9 @@ export default () => {
         <Route  path='/signup' component={ Signup } />
         <Route  path='/signin' component={ Signin } />
         {/* <Route  path= '/signout'/>  is signout route/component needed? */}
-        <Route path ='/feature' component={ RequireAuth(Feature) } />
-        <Route path ='/dashboard' component={ RequireAuth(Dashboard) } />
+        <Route path='/feature' component={ RequireAuth(Feature) } />
+        <Route path='/dashboard' component={ RequireAuth(Dashboard) } />
+        <Route path='/user/characters' component={ RequireAuth(Characters) } />
       </Switch>
     </div>
   )

@@ -3,8 +3,7 @@ import {
   Card, 
   CardTitle, 
   CardActions, 
-  CardText, 
-  Button
+  CardText,
 } from 'react-mdl'
 import { Link } from 'react-router-dom'
 import './card.css'
