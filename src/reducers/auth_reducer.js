@@ -4,18 +4,20 @@ import {
 } from '../actions/user_auth_actions'
 import merge from 'lodash/merge'
 
-const initialState = {
-  id: null,
-  username: '',
-  role: ''
-}
+// const initialState = {
+//   id: null,
+//   username: '',
+//   role: '',
+//   characters: []
+// }
 
 // Below initial state is for testing only
-// const initialState = {
-//         id: 1,
-//         username: 'Seirif',
-//         role: 'user'
-//     }
+const initialState = {
+        id: 1,
+        username: 'Seirif',
+        role: 'user',
+        characters: [1,2]
+    }
 
 const authReducer = (state = initialState, action) => {
   Object.freeze(state)
