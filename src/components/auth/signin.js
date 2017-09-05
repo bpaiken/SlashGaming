@@ -1,63 +1,59 @@
 import React, { Component } from 'react';
-import { Textfield, Card, CardText, CardActions, Button } from 'react-mdl'
-
+import { Button, Form } from 'semantic-ui-react'
+import './auth.css'
 
 class Signin extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { username: '', password: '' };
-        
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this);
-    }
-    
-    handleSubmit(e) {
-				e.preventDefault();
-        this.props.signinUser({
-					username: this.state.username, 
-					password: this.state.password
-                })
-        .then(() => {
-            this.props.history.push('/dashboard')
-        })
-    }
-    
-    handleError() {
-        if (this.props.errorMessage) {
-            return (
-                <div className='alert alert-danger'>
-                    <strong>{this.props.errorMessage}</strong>
-                </div>
-            );
-        }
-    }
-    
-    handleInputChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
-    }
-    
-    render() {
-        return (
-            <div className="login">
-              <Card shadow={0} style={{ width: '512px', margin: 'auto' }}>
-                  <form id="login" onSubmit={this.handleSubmit}>
-                    <CardText>
-                      <Textfield name="username" value={this.state.username} onChange={this.handleInputChange} label="Username" autoComplete="off" />
-                      <Textfield name="password" value={this.state.password} onChange={this.handleInputChange} label="Password" type="password" autoComplete="off" />
-                        </CardText>
-                        {this.handleError()}
-                        <CardActions border>
-                            <Button colored>Login</Button>
-                        </CardActions>
-                    </form>
-                </Card>
-            </div>
-        );
-    };
+	constructor(props) {
+		super(props);
+		this.state = { username: '', password: '' };
+		
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this);
+	}
+	
+	handleSubmit(e) {
+		e.preventDefault();
+		this.props.signinUser({
+			username: this.state.username, 
+			password: this.state.password
+		})
+		.then(() => {
+			this.props.history.push('/dashboard')
+		})
+	}
+	
+	handleError() {
+		if (this.props.errorMessage) {
+			return (
+				<div className='alert alert-danger'>
+					<strong>{this.props.errorMessage}</strong>
+				</div>
+			);
+		}
+	}
+	
+	handleInputChange(fieldName) {
+		return (e) => {
+			this.setState({ [fieldName]: e.target.value });
+		}
+	}
+	
+	render() {
+			return (
+				<div>
+					<Form size='big' className='form-auth'>
+						<Form.Input label='Username' placeholder='enter username' 
+							onChange={this.handleInputChange('username')} />
+						<Form.Input label='Password' type='Password' placeholder='enter password' 
+							onChange={this.handleInputChange('password')} />  
+						<Button type='submit' onClick={this.handleSubmit}>Submit</Button>								
+					</Form>
+				</div>
+			)
+	}
 }
 
 ///// CONTAINER /////
-// import * as actions from '../../actions';
 import { signinUser } from '../../actions/user_auth_actions'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
