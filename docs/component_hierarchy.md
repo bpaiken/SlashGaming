@@ -5,5 +5,11 @@
 
 **App**
 - Header
-- SideBar
+- SidebarWrapper
+
+**SidebarWrapper**
+- ContentRouter
+
+**ContentRouter**
 - Dashboard
+- Characters

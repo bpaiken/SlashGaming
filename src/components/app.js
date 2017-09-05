@@ -1,37 +1,23 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Header from './header/header'
 import Signup from './auth/signup'
 import Signin from './auth/signin'
-import Signout from './auth/signout'
 import { Route, Switch } from 'react-router-dom'
 import RequireAuth from './auth/require_auth'
 import Feature from './feature.js'
-import Dashboard from './dashboard/dashboard.jsx'
-import Characters from './characters/characters.jsx'
+import SidebarWrapper from './sidebar_wrapper/sidebar_wrapper.jsx'
 
-// export default class App extends Component {
-//   render() {
-//     return (
-//       <div className="app">
-//       <Header/>
-//         {this.props.children}
-//       </div>
-//     );
-//   }
-// }
+import 'semantic-ui-css/semantic.min.css'
 
 export default () => {
   return (
     <div>
       <Header />
-      {/* <Sidebar /> */}
       <Switch>
         <Route  path='/signup' component={ Signup } />
         <Route  path='/signin' component={ Signin } />
-        {/* <Route  path= '/signout'/>  is signout route/component needed? */}
         <Route path='/feature' component={ RequireAuth(Feature) } />
-        <Route path='/dashboard' component={ RequireAuth(Dashboard) } />
-        <Route path='/user/characters' component={ RequireAuth(Characters) } />
+        <Route path='/' component={ SidebarWrapper } />
       </Switch>
     </div>
   )
