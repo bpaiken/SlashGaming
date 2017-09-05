@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form, Message, Grid } from 'semantic-ui-react'
 import './auth.css'
 
 class Signin extends Component {
@@ -40,14 +40,26 @@ class Signin extends Component {
 	
 	render() {
 			return (
-				<div>
-					<Form size='big' className='form-auth'>
-						<Form.Input label='Username' placeholder='enter username' 
-							onChange={this.handleInputChange('username')} />
-						<Form.Input label='Password' type='Password' placeholder='enter password' 
-							onChange={this.handleInputChange('password')} />  
-						<Button type='submit' onClick={this.handleSubmit}>Submit</Button>								
-					</Form>
+				<div className='signup-form'>
+					<Grid className='grid-center'>
+						<Grid.Column className='grid-column-auth'>
+							<h2>Sign In</h2>
+
+							<Form size='big' className='form-auth'>
+								<Form.Input placeholder='enter username' 
+									onChange={this.handleInputChange('username')} />
+								
+								<Form.Input type='Password' placeholder='enter password' 
+									onChange={this.handleInputChange('password')} />  
+								
+								<Button type='submit' onClick={this.handleSubmit}>Submit</Button>								
+							</Form>
+						
+							<Message>
+								New User? <a href='/signup'>Sign Up</a>
+							</Message>
+						</Grid.Column>
+					</Grid>
 				</div>
 			)
 	}

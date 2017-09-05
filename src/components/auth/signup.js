@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form, Message, Grid } from 'semantic-ui-react'
 import './auth.css'
 
 // TODO: add frontend/backend errors
@@ -36,16 +36,29 @@ class Signup extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<Form size='big' className='form-auth'>
-					<Form.Input label='Username' placeholder='enter username' 
-						onChange={this.handleInputChange('username')} />
-					<Form.Input label='Password' type='Password' placeholder='enter password' 
-						onChange={this.handleInputChange('password')} />  
-					<Form.Input label='Confirm Password' type='Password' placeholder='re-enter password'
-						onChange={this.handleInputChange('confirmPassword')} />
-					<Button type='submit' onClick={this.handleSubmit}>Submit</Button>								
-				</Form>				
+			<div className='signup-form'>
+				<Grid className='grid-center'>
+					<Grid.Column className='grid-column-auth'>
+						<h2>Create An Account</h2>	
+
+						<Form size='big' className='form-auth'>
+							<Form.Input placeholder='enter username' 
+								onChange={this.handleInputChange('username')} />
+
+							<Form.Input type='Password' placeholder='enter password' 
+								onChange={this.handleInputChange('password')} />
+
+							<Form.Input type='Password' placeholder='confirm password'
+								onChange={this.handleInputChange('confirmPassword')} />
+
+							<Button type='submit' onClick={this.handleSubmit}>Submit</Button>								
+						</Form>				
+						
+						<Message>
+							Already a User? <a href='/signin'>Sign In</a>
+						</Message>
+					</Grid.Column>	
+				</Grid>
 			</div>
 		);
 	}
