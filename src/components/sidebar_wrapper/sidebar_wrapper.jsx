@@ -1,6 +1,8 @@
 import React from 'react'
 import PageContent from '../content_router/content_router'
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
+import { Sidebar, Segment, Button, Menu, Image, Icon } from 'semantic-ui-react'
+
+import './sidebar_wrapper.css'
 
 // TODO: does this need to be a class component?
 class SidebarWrapper extends React.Component {
@@ -12,7 +14,7 @@ class SidebarWrapper extends React.Component {
   render() {
     const visible = this.props.display.sidebarVisible
     return (
-      <div>
+      <div className='sidebar-wrapper'>
         <Sidebar.Pushable as={Segment}>
           <Sidebar as={Menu} animation='slide along' width='thin' visible={visible} icon='labeled' vertical inverted>
             <Menu.Item name='home'>
