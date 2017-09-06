@@ -1,11 +1,15 @@
 .header{
-  display: flex
+  
 }
 
-.header-tab {
-
+.menu-header-static {
+  position: static !important;
 }
 
 #home-tab {
   margin-right: auto
+}
+
+#toggle-sidebar-icon {
+  align-self: center;
 }

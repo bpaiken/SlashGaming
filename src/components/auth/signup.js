@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Form, Message, Grid } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 import './auth.css'
 
 // TODO: add frontend/backend errors
@@ -55,7 +56,7 @@ class Signup extends React.Component {
 						</Form>				
 						
 						<Message>
-							Already a User? <a href='/signin'>Sign In</a>
+							Already a User? <Link to='signin'>Sign In</Link>
 						</Message>
 					</Grid.Column>	
 				</Grid>

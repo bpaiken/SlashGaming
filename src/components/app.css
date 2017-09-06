@@ -1,0 +1,4 @@
+.application-wrapper,
+.application-wrapper > div {
+  height: 100%;
+}

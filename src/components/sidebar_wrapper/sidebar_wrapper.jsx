@@ -7,8 +7,6 @@ class SidebarWrapper extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { visible: true }
-
     this.toggleVisibility = this.toggleVisibility.bind(this)
   }
 
@@ -19,10 +17,9 @@ class SidebarWrapper extends React.Component {
   }
 
   render() {
-    const { visible } = this.state
+    const visible = this.props.display.sidebarVisible
     return (
       <div>
-        <Button onClick={this.toggleVisibility}>Toggle Visibility</Button>
         <Sidebar.Pushable as={Segment}>
           <Sidebar as={Menu} animation='slide along' width='thin' visible={visible} icon='labeled' vertical inverted>
             <Menu.Item name='home'>
@@ -52,9 +49,9 @@ class SidebarWrapper extends React.Component {
 ///// CONTAINER /////
 import { connect } from 'react-redux'
 
-const mapStateToProps = () => {
+const mapStateToProps = ({ display }) => {
   return {
-
+    display,
   }
 }
 

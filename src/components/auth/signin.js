@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, Message, Grid } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 import './auth.css'
 
 class Signin extends Component {
@@ -56,7 +57,7 @@ class Signin extends Component {
 							</Form>
 						
 							<Message>
-								New User? <a href='/signup'>Sign Up</a>
+								New User? <Link to='/signup'>Sign Up</Link>
 							</Message>
 						</Grid.Column>
 					</Grid>
