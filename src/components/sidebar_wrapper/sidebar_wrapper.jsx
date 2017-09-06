@@ -7,13 +7,6 @@ class SidebarWrapper extends React.Component {
   constructor(props) {
     super(props)
 
-    this.toggleVisibility = this.toggleVisibility.bind(this)
-  }
-
-  toggleVisibility() {
-    let visible = this.state.visible ? false : true
-    this.setState({ visible })
-
   }
 
   render() {
