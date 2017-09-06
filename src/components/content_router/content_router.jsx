@@ -12,7 +12,7 @@ export default (props) => {
 
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <Switch>
         <Route  path='/signup' component={ Signup } />
         <Route  path='/signin' component={ Signin } />

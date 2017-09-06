@@ -1,5 +1,5 @@
 import React from 'react'
-// import Header from './header/header'
+import Header from './header/header'
 import Signup from './auth/signup'
 import Signin from './auth/signin'
 import { Route, Switch } from 'react-router-dom'
@@ -9,11 +9,12 @@ import SidebarWrapper from './sidebar_wrapper/sidebar_wrapper.jsx'
 
 import 'semantic-ui-css/semantic.min.css'
 import './app.css'
+import './header/header.css'
 
 export default () => {
   return (
     <div className='application-wrapper'>
-      {/* <Header /> */}
+      <Header />
       <Switch>
         {/* <Route  path='/signup' component={ Signup } />
         <Route  path='/signin' component={ Signin } />
