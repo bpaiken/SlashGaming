@@ -16,7 +16,7 @@ class SidebarWrapper extends React.Component {
     return (
       <div className='sidebar-wrapper'>
         <div className="mobile-header">
-          <Icon size="large" name='align justify' />
+          <Icon onClick={this.props.toggleSidebar} size="large" name='align justify' />
         </div>
         <Sidebar.Pushable as={Segment}>
           <Sidebar as={Menu} animation='slide along' width='thin' visible={visible} icon='labeled' vertical inverted>
@@ -46,6 +46,7 @@ class SidebarWrapper extends React.Component {
 
 ///// CONTAINER /////
 import { connect } from 'react-redux'
+import { toggleSidebar } from '../../actions/display_actions.js'
 
 const mapStateToProps = ({ display }) => {
   return {
@@ -55,7 +56,7 @@ const mapStateToProps = ({ display }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-
+    toggleSidebar: () => dispatch(toggleSidebar())
   }
 }
 
