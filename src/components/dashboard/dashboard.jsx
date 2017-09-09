@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Table, Label, Icon } from 'semantic-ui-react'
+import { Container, Grid, Table, Label, Icon } from 'semantic-ui-react'
 
 import './dashboard.css'
 
@@ -8,8 +8,11 @@ const Dashboard = (props) => {
   return (
     <div>
       <Container>
-        <h2><Icon name='bell' /> Upcoming events</h2>
-        <Table basic>
+        <Grid columns={1}>
+          <Grid.Row>
+            <Grid.Column>
+            <h2><Icon name='bell' /> Upcoming events</h2>
+        <Table basic unstackable>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>Starting</Table.HeaderCell>
@@ -49,7 +52,7 @@ const Dashboard = (props) => {
         </Table>
 
         <h2><Icon name='checkmark' /> Closed events</h2>
-        <Table basic>
+        <Table basic unstackable>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>Winner</Table.HeaderCell>
@@ -87,6 +90,9 @@ const Dashboard = (props) => {
         </Table.Row>
           </Table.Body>
         </Table>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </Container>
     </div> 
   )

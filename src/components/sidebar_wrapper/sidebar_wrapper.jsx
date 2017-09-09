@@ -15,6 +15,9 @@ class SidebarWrapper extends React.Component {
     const visible = this.props.display.sidebarVisible
     return (
       <div className='sidebar-wrapper'>
+        <div className="mobile-header">
+          <Icon size="large" name='align justify' />
+        </div>
         <Sidebar.Pushable as={Segment}>
           <Sidebar as={Menu} animation='slide along' width='thin' visible={visible} icon='labeled' vertical inverted>
             <Menu.Item name='home'>

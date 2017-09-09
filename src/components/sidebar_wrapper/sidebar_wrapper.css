@@ -1,3 +1,16 @@
 .sidebar-wrapper {
   height: 100%;
 }
+
+.mobile-header {
+  display: none;
+  padding: 25px 25px 0px 25px;
+}
+
+/* Sidebar responsiveness */
+
+@media (max-width: 767px) {
+  .mobile-header {
+    display: block;
+  }
+}

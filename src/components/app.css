@@ -2,10 +2,11 @@ body, html {
     height: 100%;
 }
 
-body {
+body, .ui.segment, .pusher {
     background: #1c1c24;
     color: #6d788c;
 }
+
 
 .application-wrapper {
     margin-left: 15rem;
@@ -51,8 +52,27 @@ h1, h2, h3, h4 {
     }
 }
 
+/* Forms */
+.ui.form {
+    background: #1f1f29;
+    border: none;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+
+    input {
+        background: #404050 !important;
+        color: #fff !important;
+    }
+}
+
 /* Common */
 
 .points {
     color: #84BC9C;
+}
+
+@media (max-width: 767px) {
+
+    .application-wrapper {
+        margin-left: 0px;
+    }
 }

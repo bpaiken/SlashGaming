@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Message, Grid } from 'semantic-ui-react'
+import { Button, Form, Message, Grid, Segment } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import './auth.css'
 
@@ -43,16 +43,18 @@ class Signup extends React.Component {
 						<h2>Create An Account</h2>	
 
 						<Form size='big' className='form-auth'>
-							<Form.Input placeholder='enter username' 
-								onChange={this.handleInputChange('username')} />
+							<Segment stacked>
+								<Form.Input placeholder='enter username' 
+									onChange={this.handleInputChange('username')} />
 
-							<Form.Input type='Password' placeholder='enter password' 
-								onChange={this.handleInputChange('password')} />
+								<Form.Input type='Password' placeholder='enter password' 
+									onChange={this.handleInputChange('password')} />
 
-							<Form.Input type='Password' placeholder='confirm password'
-								onChange={this.handleInputChange('confirmPassword')} />
+								<Form.Input type='Password' placeholder='confirm password'
+									onChange={this.handleInputChange('confirmPassword')} />
 
-							<Button type='submit' onClick={this.handleSubmit}>Submit</Button>								
+								<Button type='submit' onClick={this.handleSubmit}>Submit</Button>								
+							</Segment>
 						</Form>				
 						
 						<Message>

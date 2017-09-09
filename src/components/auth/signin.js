@@ -45,20 +45,16 @@ class Signin extends Component {
 					<Grid className='grid-center'>
 						<Grid.Column className='grid-column-auth'>
 							<h2>Sign In</h2>
-
-							<Form size='big' className='form-auth'>
-								<Form.Input placeholder='enter username' 
+							<Form size='large' className='form-auth'>
+								<Form.Input icon='user' iconPosition='left' placeholder='Username' 
 									onChange={this.handleInputChange('username')} />
 								
-								<Form.Input type='Password' placeholder='enter password' 
+								<Form.Input type='password' icon='lock' iconPosition='left' placeholder='Password' 
 									onChange={this.handleInputChange('password')} />  
 								
-								<Button type='submit' onClick={this.handleSubmit}>Submit</Button>								
+								<Button color='blue' fluid size='large' onClick={this.handleSubmit}>Login</Button>
+								<p>New User? <Link to='/signup'>Sign Up</Link></p>
 							</Form>
-						
-							<Message>
-								New User? <Link to='/signup'>Sign Up</Link>
-							</Message>
 						</Grid.Column>
 					</Grid>
 				</div>
