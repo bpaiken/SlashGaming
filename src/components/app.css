@@ -1,0 +1,58 @@
+body, html {
+    height: 100%;
+}
+
+body {
+    background: #1c1c24;
+    color: #6d788c;
+}
+
+.application-wrapper {
+    margin-left: 15rem;
+    padding-top: 15px;
+}
+
+h1, h2, h3, h4 {
+    color: #fcfcfc;;
+}
+
+.ui.basic.table {
+    background: #1f1f29;
+    color: #6d788c;
+
+    thead {
+        background-color: rgba(0,0,20,.02);
+        th {
+            border-bottom: 2px solid #1c1c24;
+            color: #fcfcfc;
+        }
+        
+    }
+
+    tbody td {
+        border-bottom: 2px solid #1c1c24;
+    }
+
+    tbody tr:nth-child(2n), .ui.striped.table>tr:nth-child(2n) {
+        background-color: rgba(0,0,50,.02);
+    }
+}
+
+/* Labels */
+.label {
+    &.jungle-green {
+        color: #fff;
+        background: #2CA58D;
+    }
+
+    &.deep-purple {
+        color: #fff;
+        background: #974ec2;
+    }
+}
+
+/* Common */
+
+.points {
+    color: #84BC9C;
+}
