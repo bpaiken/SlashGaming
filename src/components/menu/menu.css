@@ -1,9 +1,26 @@
-.ui.inverted.menu {
+.ui.vertical.inverted.menu {
     padding-top: 12px;
-    background: #1f1f29 !important;
+    background: #1f1f29;
 
-    .item {
-        font-size: 1em;
+    .item>i.icon {
+        float: none;
+        margin-left: 0px;
+        margin-right: 5px;
+    }
+
+    .item .menu a {
+        font-size: 12px;
+        padding: 15px 10px 15px 10px;
+
+        &.active {
+            background: #1c1c24 !important;
+            font-weight: 400;
+        }
+    }
+
+    .header {
+        color: #434956;
+        text-transform: uppercase;
     }
 }
 

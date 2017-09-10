@@ -1,40 +1,46 @@
 import React from 'react'
 import PageContent from '../content_router/content_router'
-import { Sidebar, Segment, Button, Menu, Image, Icon } from 'semantic-ui-react'
+import { Sidebar, Segment, Menu, Icon } from 'semantic-ui-react'
 
 import './sidebar_wrapper.css'
 
-// TODO: does this need to be a class component?
 class SidebarWrapper extends React.Component {
-  constructor(props) {
-    super(props)
-
-  }
-
   render() {
     const visible = this.props.display.sidebarVisible
     return (
       <div className='sidebar-wrapper'>
-        <div className="mobile-header">
-          <Icon onClick={this.props.toggleSidebar} size="large" name='align justify' />
-        </div>
         <Sidebar.Pushable as={Segment}>
           <Sidebar as={Menu} animation='slide along' width='thin' visible={visible} icon='labeled' vertical inverted>
-            <Menu.Item name='home'>
-              <Icon name='home' />
-              Home
+            <Menu.Item name='dashboard'>
+              <Icon name='globe' />
+              Dashboard
             </Menu.Item>
-            <Menu.Item name='gamepad'>
-              <Icon name='gamepad' />
-              Games
+            <Menu.Item name='characters'>
+              <Icon name='users' />
+              Characters
             </Menu.Item>
-            <Menu.Item name='camera'>
-              <Icon name='camera' />
-              Channels
+            <Menu.Item name='verify-character'>
+              <Icon name='add user' />
+              Verify character
+            </Menu.Item>
+            <Menu.Item name='upcoming-events'>
+              <Icon name='calendar' />
+              Upcoming events
+            </Menu.Item>
+            <Menu.Item name='closed-events'>
+              <Icon name='trophy' />
+              Closed events
+            </Menu.Item>
+            <Menu.Item name='settings'>
+              <Icon name='setting' />
+              Settings
             </Menu.Item>
           </Sidebar>
           <Sidebar.Pusher>
             <Segment basic>
+              <div className="mobile-header">
+                <Icon onClick={this.props.toggleSidebar} size="large" name='align justify' />
+              </div>
               <PageContent />
             </Segment>
           </Sidebar.Pusher>

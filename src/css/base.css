@@ -1,0 +1,145 @@
+body, html {
+    height: 100%;
+}
+
+/* Layout */
+body, .ui.segment, .pusher {
+    background: #1c1c24;
+    color: #6d788c;
+    margin-top: 0px;
+}
+
+.ui.segment {
+    padding-right: 0px;
+}
+
+.application-wrapper {
+    margin-left: 15rem;
+    padding-top: 15px;
+}
+
+/* Typography */
+
+h1 {
+    font-size: 24px;
+}
+h2 {
+    font-size: 18px;
+}
+h3 {
+    font-size: 16px;
+}
+
+h1, h2, h3, h4 {
+    color: #fcfcfc;
+    border-bottom: 2px solid #3D3C4F;
+    padding-bottom: 7px;
+}
+
+/* Tables */
+
+.ui.basic.table {
+    background: #1f1f29;
+    color: #6d788c;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+
+    thead {
+        background-color: rgba(0,0,20,.02);
+        th {
+            border-bottom: 2px solid #1c1c24;
+            color: #fcfcfc;
+        }
+    }
+
+    tbody td {
+        border-bottom: 1px solid #1c1c24;
+    }
+
+    tbody tr:hover {
+        background: #1c1c24;
+    }
+}
+
+/* Labels */
+
+.ui.label {
+    &.green {
+        color: #fff;
+        background-color: #2CA58D !important;
+    }
+
+    &.purple {
+        color: #fff;
+        background: #974ec2 !important;
+    }
+}
+
+/* Buttons */
+
+.ui.button {
+    /* Overriding semantic colors */
+    &.green {
+        background: #2CA58D;
+        &:hover, &:visited {
+            background: #238479;
+        }
+        &:focus {
+            background: #1B665F;
+        }
+    }
+
+    &.purple {
+        background: #974ec2;
+    }
+}
+
+/* Forms */
+
+.ui.form {
+    background: #1f1f29;
+    border: none;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+
+    input {
+        background: #404050 !important;
+        color: #fff !important;
+    }
+}
+
+/* Lists */
+
+.ui.list>.item {
+    .header {
+        color: #fff;
+    }
+    .description {
+        color: #6d788c;
+    }
+}
+
+/* Common */
+
+.points {
+    color: #84BC9C;
+}
+
+@media (max-width: 767px) {
+
+    .application-wrapper {
+        margin-left: 0px;
+    }
+
+    .ui.segment {
+        padding-left: 0px;
+    }
+
+    .ui.basic.table {
+        font-size: 10px;   
+    }
+
+    .ui.label {
+        font-size: 10px;
+        font-weight: 400;
+    }
+    
+}

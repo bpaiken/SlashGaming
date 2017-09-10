@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, TableHeader, } from 'react-mdl'
+import { Container, Grid, Table, Label, Icon } from 'semantic-ui-react'
 
 class Characters extends React.Component {
   constructor(props){
@@ -24,39 +24,47 @@ class Characters extends React.Component {
 
   render() {
    let charRows = this.buildRows()
-    return (
-      <div className="page-wrapper">
-        <h1>User Characters</h1>
-          <Table 
-            sortable 
-            shadow={0}
-            rows={charRows}
-            >
+   return (
+    <div>
+      <Container>
+        <Grid columns={1}>
+          <Grid.Row>
+            <Grid.Column>
+            <h2><Icon name='users' /> Verified characters</h2>
+            <Table basic unstackable>
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell>Level</Table.HeaderCell>
+                  <Table.HeaderCell>Name</Table.HeaderCell>
+                  <Table.HeaderCell>Class</Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
+              <Table.Body>
+                <Table.Row>
+                  <Table.Cell><Label className="deep-purple">Lvl 99</Label></Table.Cell>
+                  <Table.Cell><a href="#">Nokkasorc</a></Table.Cell>
+                  <Table.Cell>Sorceress</Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                  <Table.Cell><Label className="deep-purple">Lvl 21</Label></Table.Cell>
+                  <Table.Cell><a href="#">Nokkahammer</a></Table.Cell>
+                  <Table.Cell>Paladin</Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                  <Table.Cell><Label className="deep-purple">Lvl 85</Label></Table.Cell>
+                  <Table.Cell><a href="#">Nokkazon</a></Table.Cell>
+                  <Table.Cell>Amazon</Table.Cell>
+                </Table.Row>
+              </Table.Body>
+            </Table>
 
-            <TableHeader 
-              name="name"
-              tooltip="Sort By Name"
-              >
-              Name
-            </TableHeader>
-
-            <TableHeader 
-            name="account"
-            tooltip="The amazing material name"
-              >
-              Account
-            </TableHeader>
-
-            <TableHeader 
-              numeric
-              name="points"
-              tooltip="Sort By Account"
-              >
-              Points
-            </TableHeader>
-          </Table>
-      </div>
-    );
+        
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
+    </div> 
+  );
   }
 }
 

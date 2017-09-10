@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Message, Grid, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import './auth.css'
 
@@ -41,25 +41,19 @@ class Signup extends React.Component {
 				<Grid className='grid-center'>
 					<Grid.Column className='grid-column-auth'>
 						<h2>Create An Account</h2>	
-
-						<Form size='big' className='form-auth'>
-							<Segment stacked>
-								<Form.Input placeholder='enter username' 
+						<Form size='large' className='form-auth'>
+								<Form.Input icon='user' iconPosition='left' placeholder='Username' 
 									onChange={this.handleInputChange('username')} />
 
-								<Form.Input type='Password' placeholder='enter password' 
+								<Form.Input icon='lock' iconPosition='left' type='password' placeholder='Password' 
 									onChange={this.handleInputChange('password')} />
 
-								<Form.Input type='Password' placeholder='confirm password'
+								<Form.Input icon='lock' iconPosition='left' type='password' placeholder='Confirm password'
 									onChange={this.handleInputChange('confirmPassword')} />
 
-								<Button type='submit' onClick={this.handleSubmit}>Submit</Button>								
-							</Segment>
+								<Button color="blue" fluid size='large' type='submit' onClick={this.handleSubmit}>Submit</Button>								
+								<p>Already a User? <Link to='signin'>Sign In</Link></p>
 						</Form>				
-						
-						<Message>
-							Already a User? <Link to='signin'>Sign In</Link>
-						</Message>
 					</Grid.Column>	
 				</Grid>
 			</div>

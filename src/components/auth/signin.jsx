@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Message, Grid } from 'semantic-ui-react'
+import { Button, Form, Grid, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import './auth.css'
 
@@ -52,7 +52,9 @@ class Signin extends Component {
 								<Form.Input type='password' icon='lock' iconPosition='left' placeholder='Password' 
 									onChange={this.handleInputChange('password')} />  
 								
-								<Button color='blue' fluid size='large' onClick={this.handleSubmit}>Login</Button>
+								<Button color='blue' fluid size='large' onClick={this.handleSubmit}>
+									<Icon name="sign in"/>Login
+								</Button>
 								<p>New User? <Link to='/signup'>Sign Up</Link></p>
 							</Form>
 						</Grid.Column>
