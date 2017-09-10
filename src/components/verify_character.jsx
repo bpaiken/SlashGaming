@@ -41,12 +41,11 @@ class VerifyCharacter extends Component {
   
   render() {
     return (
-      <Container className="verify-character">
-      <Grid stackable columns={2}>
+      
+      <Grid className="verify-character" container stackable columns={2}>
         <Grid.Row>
           <Grid.Column>
             <h2><Icon name='add user' /> Verify character</h2>
-
             { (this.state.showCounter) ?
                 <div>
                   <div className="verify-counter">
@@ -54,7 +53,7 @@ class VerifyCharacter extends Component {
                     <ReactCountdownClock seconds={this.state.timer}
                       color="#974ec2"
                       size={200}
-                      weight={3}
+                      weight={2}
                       fontSize={"0px"}
                       onComplete={this.timeElapsed} />
                   </div>
@@ -114,9 +113,7 @@ class VerifyCharacter extends Component {
             </List>
           </Grid.Column>
         </Grid.Row>
-        
       </Grid>
-    </Container>
     )
       
   }
