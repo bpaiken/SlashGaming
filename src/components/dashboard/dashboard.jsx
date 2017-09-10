@@ -7,7 +7,7 @@ const Dashboard = (props) => {
   
   return (
     <div>
-      <Grid container columns={1}>
+      <Grid className="dashboard" container columns={1}>
         <Grid.Row>
           <Grid.Column>
           <h2><Icon name='bell' /> Upcoming events</h2>
