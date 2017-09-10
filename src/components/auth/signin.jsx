@@ -55,7 +55,7 @@ class Signin extends Component {
 								<Button color='blue' fluid size='large' onClick={this.handleSubmit}>
 									<Icon name="sign in"/>Login
 								</Button>
-								<p>New User? <Link to='/signup'>Sign Up</Link></p>
+								<p>New User? <Link to='/auth/signup'>Sign Up</Link></p>
 							</Form>
 						</Grid.Column>
 					</Grid>

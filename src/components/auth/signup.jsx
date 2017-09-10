@@ -52,7 +52,7 @@ class Signup extends React.Component {
 									onChange={this.handleInputChange('confirmPassword')} />
 
 								<Button color="blue" fluid size='large' type='submit' onClick={this.handleSubmit}>Submit</Button>								
-								<p>Already a User? <Link to='signin'>Sign In</Link></p>
+								<p>Already a User? <Link to='/auth/signin'>Sign In</Link></p>
 						</Form>				
 					</Grid.Column>	
 				</Grid>

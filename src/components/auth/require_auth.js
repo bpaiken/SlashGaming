@@ -10,13 +10,13 @@ export default function (ComposedComponent) {
 
         componentWillMount() {
             if (!this.props.authenticated) {
-                this.props.history.push('/signin');
+                this.props.history.push('/auth/signin');
             };
         }
 
         componentWillUpdate(nextProps) {
             if (!nextProps.authenticated) {
-                this.props.history.push('/signin');
+                this.props.history.push('/auth/signin');
             }
         }
 
