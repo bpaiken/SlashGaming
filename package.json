@@ -57,6 +57,7 @@
     "prop-types": "^15.5.10",
     "react": "^15.4.2",
     "react-chartjs-2": "^2.0.0",
+    "react-countdown-clock": "^2.0.0",
     "react-dom": "^15.4.2",
     "react-mdl": "^1.10.3",
     "react-redux": "^5.0.5",

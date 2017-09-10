@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { Container, Grid, Icon, Form, List, Button } from 'semantic-ui-react'
+import ReactCountdownClock from 'react-countdown-clock'
 
 // Component specific css.
 import 'APP/css/verify_character.css';
@@ -7,13 +8,35 @@ import 'APP/css/verify_character.css';
 class VerifyCharacter extends Component {
   constructor(props) {
 		super(props);
-    this.state = { showCounter: false};
+    this.state = { timer: 60, showCounter: false, timeElapsed: false};
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCode = this.handleCode.bind(this);
+    this.timeElapsed = this.timeElapsed.bind(this);
   }
   
   handleSubmit(e) {
-    var _self = this;
-    this.setState({showCounter: true});
+    this.setState({showCounter: true, countdown: this.state.timer});
+
+    // Interval to count down the text counter.
+    var i = setInterval(() => {
+      if(this.state.countdown <= 0) {
+        clearInterval(i);  
+      } else {
+        this.setState({countdown: (this.state.countdown-1)})
+      }
+    }, 1000);
+  }
+
+  handleCode(e) {
+    this.setState({showCounter: false});
+    console.log("Code was handled");
+  }
+
+  timeElapsed(e) {
+    // This timeout is to prevent the count down clock not to error
+    // out because render will have been run, removing the clock
+    // when it's trying to set its width.
+    setTimeout(() => this.setState({showCounter: false}), 500);
   }
   
   render() {
@@ -23,14 +46,30 @@ class VerifyCharacter extends Component {
         <Grid.Row>
           <Grid.Column>
             <h2><Icon name='add user' /> Verify character</h2>
-            <div>
-                <p>Counter</p>
-            </div>
-            <Form size='large'>
-                <Form.Input icon='vcard' iconPosition='left' placeholder='Account'/>
-                <Form.Input icon='user' iconPosition='left' placeholder='Character name'/>  
-                <Button color="green" fluid size='large' onClick={this.handleSubmit}>Let's go</Button>
-            </Form>
+
+            { (this.state.showCounter) ?
+                <div>
+                  <div className="verify-counter">
+                    <div className="counter-text">{this.state.countdown}</div>
+                    <ReactCountdownClock seconds={this.state.timer}
+                      color="#974ec2"
+                      size={200}
+                      weight={3}
+                      fontSize={"0px"}
+                      onComplete={this.timeElapsed} />
+                  </div>
+                  <Form size='large'>
+                    <Form.Input icon='code' iconPosition='left' placeholder='Code'/>
+                    <Button color="blue" fluid size='large' onClick={this.handleCode}>Verify</Button>
+                  </Form>
+                </div>
+                :
+                <Form size='large'>
+                  <Form.Input icon='vcard' iconPosition='left' placeholder='Account'/>
+                  <Form.Input icon='user' iconPosition='left' placeholder='Character name'/>  
+                  <Button color="green" fluid size='large' onClick={this.handleSubmit}>Let's go</Button>
+                </Form>
+            }
           </Grid.Column>
           <Grid.Column>
             <h2>How it works</h2>
@@ -49,7 +88,7 @@ class VerifyCharacter extends Component {
               <List.Item>
                 <List.Icon color="blue" name='sign in' size='large' verticalAlign='middle' />
                 <List.Content>
-                  <List.Header>Login to your account on the Slash server</List.Header>
+                  <List.Header>Login to the chat on your account on the Slash server</List.Header>
                 </List.Content>
               </List.Item>
               <List.Item>
@@ -61,8 +100,8 @@ class VerifyCharacter extends Component {
               <List.Item>
                 <List.Icon name='copy' size='large' verticalAlign='middle' />
                 <List.Content>
-                  <List.Header>Grab the code you received in game</List.Header>
-                  <List.Description><code>YSPrddrV</code> is an example of what your code might look like.</List.Description>
+                  <List.Header>Grab the code in game before the timer runs out</List.Header>
+                  <List.Description><code>YSPrddrV</code> is an example of what your code might look like that you received in game.</List.Description>
                 </List.Content>
               </List.Item>
               <List.Item>

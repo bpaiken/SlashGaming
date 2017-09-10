@@ -1,1 +1,16 @@
-.verify-character {}
+.verify-character {
+    .verify-counter {
+        position: relative;
+        margin: 15px auto 15px auto;
+        width: 200px;
+        height: 200px;
+
+        .counter-text {
+            position: absolute;
+            top: 47%;
+            left: 87px;
+            font-size: 20px;
+            color: #fff;
+        }
+    }
+}
