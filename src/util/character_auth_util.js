@@ -11,3 +11,12 @@ export const verifyCharacter = ({account, character}) => {
     }
   )
 }
+
+export const verifyCode = ({ code }) => {
+  return axios.post(`${API_URL}/verify/code`), { code }, {
+    headers:
+    {
+      Authorization: 'Bearer' + localStorage.getItem('token')
+    }
+  }
+}

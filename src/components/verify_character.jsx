@@ -8,13 +8,28 @@ import 'APP/css/verify_character.css';
 class VerifyCharacter extends Component {
   constructor(props) {
 		super(props);
-    this.state = { timer: 60, showCounter: false, timeElapsed: false};
+    this.state = { 
+      timer: 60, 
+      showCounter: false, 
+      timeElapsed: false,
+      account: '',
+      character: '',
+      code: ''
+    };
+    
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCode = this.handleCode.bind(this);
     this.timeElapsed = this.timeElapsed.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this)
   }
   
   handleSubmit(e) {
+    e.preventDefault()
+    this.props.verifyCharacter({
+      account: this.state.account,
+      character: this.state.character
+    })
+
     this.setState({showCounter: true, countdown: this.state.timer});
 
     // Interval to count down the text counter.
@@ -28,6 +43,12 @@ class VerifyCharacter extends Component {
   }
 
   handleCode(e) {
+    e.preventDefault()
+
+    this.props.verifyCode({
+      code: this.state.code
+    })
+    
     this.setState({showCounter: false});
     console.log("Code was handled");
   }
@@ -38,7 +59,14 @@ class VerifyCharacter extends Component {
     // when it's trying to set its width.
     setTimeout(() => this.setState({showCounter: false}), 500);
   }
+
+  handleInputChange(fieldName) {
+    return (e) => {
+      this.setState({ [fieldName]: e.target.value })
+    }
+  }
   
+  // TODO: update the conditional logic to be based on a response from the server
   render() {
     return (
       
@@ -58,14 +86,17 @@ class VerifyCharacter extends Component {
                       onComplete={this.timeElapsed} />
                   </div>
                   <Form size='large'>
-                    <Form.Input icon='code' iconPosition='left' placeholder='Code'/>
+                    <Form.Input icon='code' iconPosition='left' 
+                      onChange={this.handleInputChange('code')} placeholder='Code'/>
                     <Button color="blue" fluid size='large' onClick={this.handleCode}>Verify</Button>
                   </Form>
                 </div>
                 :
                 <Form size='large'>
-                  <Form.Input icon='vcard' iconPosition='left' placeholder='Account'/>
-                  <Form.Input icon='user' iconPosition='left' placeholder='Character name'/>  
+                  <Form.Input icon='vcard' iconPosition='left' 
+                    onChange={this.handleInputChange('account')} placeholder='Account'/>
+                  <Form.Input icon='user' iconPosition='left' 
+                    onChange={this.handleInputChange('character')} placeholder='Character name'/>  
                   <Button color="green" fluid size='large' onClick={this.handleSubmit}>Let's go</Button>
                 </Form>
             }
@@ -119,4 +150,25 @@ class VerifyCharacter extends Component {
   }
 }
 
-export default VerifyCharacter
+// export default VerifyCharacter
+///// CONTAINER /////
+import { connect } from 'react-redux'
+import { verifyCharacter, verifyCode } from '../actions/character_auth_actions.js'
+
+const mapStateToProps = () => {
+  return {
+
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    verifyCharacter: character => dispatch(verifyCharacter(character)),
+    verifyCode: code => dispatch(verifyCode(code))
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(VerifyCharacter)
