@@ -21,9 +21,14 @@ class SlashMenu extends React.Component {
             <Menu.Header>Account</Menu.Header>
             
             <Menu.Menu>
-              <Menu.Item name='profile' data-path='/dashboard'
+              <Menu.Item name='profile' data-path='/user'
                 active={activeItem === 'profile'} onClick={this.handleItemClick}>
                 <Icon name='calendar' /> Profile
+              </Menu.Item>
+
+              <Menu.Item name='dashboard' data-path='/dashboard'
+                active={activeItem === 'profile'} onClick={this.handleItemClick}>
+                <Icon name='globe' /> Dashboard
               </Menu.Item>
 
               <Menu.Item name='verified-characters' data-path='/user/characters'
