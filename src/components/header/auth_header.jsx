@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router-dom';
 import { Menu, Button, Container, Icon } from 'semantic-ui-react'
 
-import './header.css'
+import 'APP/css/auth_header.css'
 
 class Header extends Component {
 	constructor(props) {
@@ -25,7 +25,7 @@ class Header extends Component {
 		const { activeItem } = this.state
 		return (
 			<div className='header'>
-				<Menu inverted className='menu-header-static' fixed='top' size='large'>
+				<Menu inverted fixed='top' size='large'>
 				<Menu.Item
 						position='right'
 						onClick={this.handleMenuItemClick('signin')}

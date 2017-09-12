@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Form, Grid } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import './auth.css'
+import 'APP/css/auth.css'
 
 // TODO: add frontend/backend errors
 class Signup extends React.Component {

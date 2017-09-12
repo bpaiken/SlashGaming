@@ -2,7 +2,7 @@ import React from 'react'
 import { Menu, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-import './menu.css'
+import 'APP/css/menu.css'
 
 class SlashMenu extends React.Component {
   state = { activeItem: 'account' }

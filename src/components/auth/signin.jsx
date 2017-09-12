@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import './auth.css'
+import 'APP/css/auth.css'
 
 class Signin extends Component {
 	constructor(props) {
