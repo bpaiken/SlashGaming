@@ -3,7 +3,6 @@ export const RECEIVE_VERIFIED_CHARACTER = 'RECEIVE_VERIFIED_CHARACTER'
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS'
 
 export const verifyCharacter = character => dispatch => {
-  debugger
   return APIUtil.verifyCharacter(character)
   .then(response => {console.log(response)},
   error => dispatch(receiveErrors(error)))
