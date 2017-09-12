@@ -153,7 +153,7 @@ class VerifyCharacter extends Component {
 // export default VerifyCharacter
 ///// CONTAINER /////
 import { connect } from 'react-redux'
-import { verifyCharacter, verifyCode } from '../actions/character_auth_actions.js'
+import { verifyCharacter, verifyCode } from 'APP/actions/character_auth_actions.js'
 
 const mapStateToProps = () => {
   return {
