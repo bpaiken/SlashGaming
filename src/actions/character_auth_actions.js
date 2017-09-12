@@ -10,19 +10,18 @@ export const verifyCharacter = character => dispatch => {
 
 export const verifyCode = code => dispatch => {
   return APIUtil.verifyCode(code)
-  // TODO: tie in receive verified character
-  .then(response => {},
+  .then(response => dispatch(recieveVerifiedCharacter(response.data)),
   error => dispatch(receiveErrors(error)))
 }
 
-// const recieveVerifiedCharacter = ({ character }) => {
-//   return {
-//     type: RECEIVE_VERIFIED_CHARACTER,
-//     character,
-//   }
-// }
+const recieveVerifiedCharacter = ({ character }) => {
+  return {
+    type: RECEIVE_VERIFIED_CHARACTER,
+    character,
+  }
+}
 
-export const receiveErrors = errors => {
+const receiveErrors = errors => {
   return {
     type: RECEIVE_ERRORS,
     errors,
