@@ -1,8 +1,8 @@
 import React from 'react'
-import PageContent from '../content_router/content_router'
+import PageContent from 'APP/components/content_router'
 import { Sidebar, Segment, Menu, Icon } from 'semantic-ui-react'
 
-import './sidebar_wrapper.css'
+import 'APP/css/sidebar_wrapper.css'
 
 class SidebarWrapper extends React.Component {
   render() {
@@ -52,7 +52,7 @@ class SidebarWrapper extends React.Component {
 
 ///// CONTAINER /////
 import { connect } from 'react-redux'
-import { toggleSidebar } from '../../actions/display_actions.js'
+import { toggleSidebar } from 'APP/actions/display_actions.js'
 
 const mapStateToProps = ({ display }) => {
   return {

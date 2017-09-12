@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from 'APP/components/header/auth_header.jsx'
+import Header from 'APP/components/auth_header.jsx'
 import Signin from 'APP/components/auth/signin.jsx'
 import Signup from 'APP/components/auth/signup.jsx'
 import { Switch, Route } from 'react-router-dom'

@@ -5,20 +5,20 @@ import {
 import { RECEIVE_VERIFIED_CHARACTER } from 'APP/actions/character_auth_actions'
 import merge from 'lodash/merge'
 
-const initialState = {
-  id: null,
-  username: '',
-  role: '',
-  characters: []
-}
+// const initialState = {
+//   id: null,
+//   username: '',
+//   role: '',
+//   characters: []
+// }
 
 // Below initial state is for testing only
-// const initialState = {
-//         id: 1,
-//         username: 'Seirif',
-//         role: 'user',
-//         characters: [1,2]
-//     }
+const initialState = {
+        id: 1,
+        username: 'Seirif',
+        role: 'user',
+        characters: [1,2]
+    }
 
 const authReducer = (state = initialState, action) => {
   Object.freeze(state)

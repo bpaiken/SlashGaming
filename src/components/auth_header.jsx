@@ -44,8 +44,8 @@ class Header extends Component {
 ///// CONTAINER /////
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
-import { signoutUser } from '../../actions/user_auth_actions'
-import { toggleSidebar } from '../../actions/display_actions'
+import { signoutUser } from 'APP/actions/user_auth_actions'
+import { toggleSidebar } from 'APP/actions/display_actions'
 
 function mapStateToProps({ currentUser }) {
 	return {

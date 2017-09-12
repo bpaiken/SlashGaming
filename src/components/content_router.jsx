@@ -1,17 +1,17 @@
 import React from 'react'
-import Dashboard from '../dashboard/dashboard'
-import Characters from '../characters/characters'
-import RequireAuth from '../auth/require_auth.js'
 import { Route, Switch } from 'react-router-dom'
-import Menu from '../menu/menu.jsx'
-import Signup from '../auth/signup.jsx'
-import Signin from '../auth/signin.jsx'
-import Feature from '../feature.js'
-
-import VerifyCharacter from '../verify_character.jsx'
+import Dashboard from 'APP/components/dashboard'
+import Characters from 'APP/components/characters'
+import RequireAuth from 'APP/components/auth/require_auth.js'
+import Menu from 'APP/components/menu.jsx'
+import Signup from 'APP/components/auth/signup.jsx'
+import Signin from 'APP/components/auth/signin.jsx'
+import Feature from 'APP/components/feature.js'
+import VerifyCharacter from 'APP/components/verify_character.jsx'
 
 export default (props) => {
 
+  // TODO: Remove/Update Feature - only used to show that you are logged in right now
   return (
     <div>
       <Menu/>
