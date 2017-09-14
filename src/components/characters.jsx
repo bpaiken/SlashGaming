@@ -1,14 +1,10 @@
 import React from 'react'
-import { Container, Grid, Table, Label, Icon } from 'semantic-ui-react'
+import { Container, Grid } from 'semantic-ui-react'
 import UserCharacterList from 'APP/components/user_character_list.jsx'
 
 // TODO: does this need to be a class component?
 class Characters extends React.Component {
-  constructor(props){
-    super(props)
-
-  }
-
+ 
   render() {
    return (
     <div>
@@ -45,5 +41,4 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps)
-  (Characters)
+  mapDispatchToProps)(Characters)
