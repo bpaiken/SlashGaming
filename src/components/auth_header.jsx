@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link, browserHistory } from 'react-router-dom';
-import { Menu, Button, Container, Icon } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 
 import 'APP/css/auth_header.css'
 
@@ -45,7 +44,6 @@ class Header extends Component {
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { signoutUser } from 'APP/actions/user_auth_actions'
-import { toggleSidebar } from 'APP/actions/display_actions'
 
 function mapStateToProps({ currentUser }) {
 	return {
@@ -61,5 +59,4 @@ const mapDispatchToProps = dispatch => {
 
 export default withRouter(connect(
 	mapStateToProps,
-	mapDispatchToProps)
-	(Header))
+	mapDispatchToProps)(Header))

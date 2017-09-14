@@ -81,6 +81,5 @@ const mapDispatchToProps = dispatch => {
 
 export default withRouter(connect(
 	mapStateToProps,
-	mapDispatchToProps)
-(Signin))
+	mapDispatchToProps)(Signin))
 

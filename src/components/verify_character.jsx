@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Container, Grid, Icon, Form, List, Button } from 'semantic-ui-react'
+import { Grid, Icon, Form, List, Button } from 'semantic-ui-react'
 import ReactCountdownClock from 'react-countdown-clock'
 
 // Component specific css.

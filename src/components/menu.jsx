@@ -1,6 +1,6 @@
 import React from 'react'
 import { Menu, Icon } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 import 'APP/css/menu.css'
 
@@ -86,5 +86,4 @@ const mapDispatchToProps = dispatch => {
 
 export default withRouter(connect(
   mapStateToProps, 
-  mapDispatchToProps)
-  (SlashMenu))
+  mapDispatchToProps)(SlashMenu))
