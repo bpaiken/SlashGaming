@@ -8,18 +8,32 @@ const initialState = {
   1: {
     id: 1,
     user_id: 1,
+    level: 90,
     name: 'seirif_sorc',
+    class: 'Sorceress',
     account: 'Seirif',
     points: 600,
-    events: [3],
+    events: [1,2,3],
   },
   2: {
     id: 2,
     user_id: 1,
+    level: 80,
     name: 'seirif_barb',
+    class: 'Barbarian',
     account: 'Seirif',
     points: 100,
-    events: [3],
+    events: [1,2,3],
+  },
+  3: {
+    id: 3,
+    user_id: 1,
+    level: 55,
+    name: 'seirif_hammers',
+    class: 'Paladin',
+    account: 'Seirif',
+    points: 50,
+    events: [1,2,3]
   }
 }
 

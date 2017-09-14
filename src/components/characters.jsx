@@ -1,38 +1,22 @@
 import React from 'react'
 import { Container, Grid, Table, Label, Icon } from 'semantic-ui-react'
-import CharacterList from 'APP/components/character_list.jsx'
+import UserCharacterList from 'APP/components/user_character_list.jsx'
 
+// TODO: does this need to be a class component?
 class Characters extends React.Component {
   constructor(props){
     super(props)
 
-    this.buildRows = this.buildRows.bind(this)
-  }
-
-  buildRows() {
-    return (
-      this.props.currentUser.characters.map(id => {
-        let char = this.props.characters[id]
-        return {
-          id: id,
-          name: char.name,
-          account: char.account,
-          points: char.points
-        }
-      })
-    )
   }
 
   render() {
-   let charRows = this.buildRows()
    return (
     <div>
       <Container>
         <Grid columns={1}>
           <Grid.Row>
             <Grid.Column>
-            <h2><Icon name='users' /> Verified characters</h2>
-            <CharacterList />
+            <UserCharacterList />
             </Grid.Column>
           </Grid.Row>
         </Grid>

@@ -17,7 +17,7 @@ const initialState = {
         id: 1,
         username: 'Seirif',
         role: 'user',
-        characters: [1,2]
+        characters: [1,2,3]
     }
 
 const authReducer = (state = initialState, action) => {

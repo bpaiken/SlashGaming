@@ -1,30 +1,7 @@
 import React from 'react'
 import { Table, Label, Icon } from 'semantic-ui-react'
 
-
-const TEST_CHAR = {
-  1: {
-    level: 99,
-    name: 'Nokkasorc',
-    type: 'Sorceress',
-  },
-  2: {
-    level: 21,
-    name: 'Nokkahammer',
-    type: 'Paladin'
-  },
-  3: {
-    level: 85,
-    name: 'Nokkazon',
-    type: 'Amazon'
-  }
-}
-
-const TEST_USER = {
-  characters: [1,2,3,4]
-}
-
-class CharacterList extends React.Component {
+class UserCharacterList extends React.Component {
   constructor(props) {
     super(props)
 
@@ -32,22 +9,26 @@ class CharacterList extends React.Component {
   }
 
   buildCharacterList() {
-    const characterArray = []
-    for (let i = 0; i < TEST_USER.characters.length; i++) {
-      let id = TEST_USER.characters[i]
-      if (TEST_CHAR[id]) {
-        characterArray.push(TEST_CHAR[id])
+    const charIds = this.props.currentUser.characters
+    const characters = this.props.characters
+    const characterList = []
+
+    for (let i = 0; i < charIds.length; i++) {
+      let id = charIds[i]
+      if (characters[id]) {
+        characterList.push(characters[id])
       } else {
         continue
       }
     }
-    return characterArray
+    return characterList
   }
 
   render() {
     const characters = this.buildCharacterList()
       return (
         <div>
+          <h2><Icon name='users' /> Verified characters</h2>
         { (characters.length > 0) ? 
             <Table basic unstackable>
               <Table.Header>
@@ -55,23 +36,26 @@ class CharacterList extends React.Component {
                   <Table.HeaderCell>Level</Table.HeaderCell>
                   <Table.HeaderCell>Name</Table.HeaderCell>
                   <Table.HeaderCell>Class</Table.HeaderCell>
+                  <Table.HeaderCell>Points</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
               <Table.Body>
                 
                 {characters.map(character => {
                   return (
-                    <Table.Row>
-                      <Table.Cell><Label className="deep-purple">Lvl {character.level}</Label></Table.Cell>
+                    <Table.Row key={character.id}>
+                      <Table.Cell><Label className="deep-purple">{`Lvl ${character.level}`}</Label></Table.Cell>
                       <Table.Cell><a href="#">{character.name}</a></Table.Cell>
-                      <Table.Cell>{character.type}</Table.Cell>
+                      <Table.Cell>{character.class}</Table.Cell>
+                      <Table.Cell>{character.points}</Table.Cell>
                     </Table.Row>
                   )
                 })}
+
               </Table.Body>
             </Table>
         :
-        <p>No Verified Characters Yet</p>
+        <p>No Characters Yet</p>
         }
       </div>
     );
@@ -82,9 +66,10 @@ class CharacterList extends React.Component {
 ///// CONTAINER /////
 import { connect } from 'react-redux'
 
-const mapStateToProps = ({}) => {
+const mapStateToProps = ({ currentUser, characters }) => {
   return {
-
+    currentUser,
+    characters
   }
 }
 
@@ -97,4 +82,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CharacterList)
+)(UserCharacterList)
