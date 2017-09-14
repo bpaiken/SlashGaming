@@ -1,8 +1,9 @@
 import merge from 'lodash/merge'
-import { TOGGLE_SIDEBAR } from '../actions/display_actions'
+import { TOGGLE_SIDEBAR, SELECT_MENU_TAB } from '../actions/display_actions'
 
 const initialState = {
-  sidebarVisible: false
+  sidebarVisible: false,
+  activeMenuTab: 'dashboard'
 }
 
 const displayReducer = (state = initialState, action) => {
@@ -13,6 +14,10 @@ const displayReducer = (state = initialState, action) => {
       currentState.sidebarVisible = !currentState.sidebarVisible
       return currentState
       
+    case SELECT_MENU_TAB:
+      currentState.activeMenuTab = action.activeMenuTab
+      return currentState
+    
     default:
       return state;
   }
