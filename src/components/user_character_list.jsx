@@ -8,6 +8,14 @@ class UserCharacterList extends React.Component {
     this.buildCharacterList = this.buildCharacterList.bind(this)
   }
 
+  componentDidMount() {
+    this.props.fetchUserCharacters(this.props.currentUser.id)
+  }
+
+  // componentWillMount() {
+    
+  // }
+
   buildCharacterList() {
     const charIds = this.props.currentUser.characters
     const characters = this.props.characters
@@ -65,6 +73,7 @@ class UserCharacterList extends React.Component {
 
 ///// CONTAINER /////
 import { connect } from 'react-redux'
+import { fetchUserCharacters } from 'APP/actions/character_actions'
 
 const mapStateToProps = ({ currentUser, characters }) => {
   return {
@@ -75,7 +84,7 @@ const mapStateToProps = ({ currentUser, characters }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-
+    fetchUserCharacters: (userId) => dispatch(fetchUserCharacters(userId))
   }
 }
 

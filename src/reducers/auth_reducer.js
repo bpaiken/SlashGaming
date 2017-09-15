@@ -3,22 +3,24 @@ import {
   SIGNOUT_CURRENT_USER
 } from '../actions/user_auth_actions'
 import { RECEIVE_VERIFIED_CHARACTER } from 'APP/actions/character_auth_actions'
+import { RECEIVE_USER_CHARACTERS } from 'APP/actions/character_actions'
+
 import merge from 'lodash/merge'
 
-// const initialState = {
-//   id: null,
-//   username: '',
-//   role: '',
-//   characters: []
-// }
+const initialState = {
+  id: null,
+  username: '',
+  role: '',
+  characters: []
+}
 
 // Below initial state is for testing only
-const initialState = {
-        id: 1,
-        username: 'Seirif',
-        role: 'user',
-        characters: [1,2,3]
-    }
+// const initialState = {
+//         id: 1,
+//         username: 'Seirif',
+//         role: 'user',
+//         characters: [1,2,3]
+//     }
 
 const authReducer = (state = initialState, action) => {
   Object.freeze(state)
@@ -31,6 +33,15 @@ const authReducer = (state = initialState, action) => {
     // TODO: clear out currentUser info on logout
     case SIGNOUT_CURRENT_USER: 
       return merge(currentState, action.currentUser)
+
+    case RECEIVE_USER_CHARACTERS:
+      action.characters.forEach(char => {
+        // Check to see if character Id is already part of characters array 
+        if (!currentState.characters.includes(char.id)) {
+          currentState.characters.push(char.id)
+        }
+    })
+      return currentState
 
     // Add character id the current user list of characters
     case RECEIVE_VERIFIED_CHARACTER:
