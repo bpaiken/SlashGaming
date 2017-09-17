@@ -9,7 +9,8 @@ class VerifyCharacter extends Component {
   constructor(props) {
 		super(props);
     this.state = { 
-      timer: 60, 
+      timer: 60,
+      timerRef: null, 
       showCounter: false, 
       timeElapsed: false,
       account: '',
@@ -21,6 +22,10 @@ class VerifyCharacter extends Component {
     this.handleCode = this.handleCode.bind(this);
     this.timeElapsed = this.timeElapsed.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.timerRef)
   }
   
   handleSubmit(e) {
@@ -40,6 +45,7 @@ class VerifyCharacter extends Component {
         this.setState({countdown: (this.state.countdown-1)})
       }
     }, 1000);
+    this.setState({ timerRef: i })
   }
 
   handleCode(e) {
@@ -49,6 +55,8 @@ class VerifyCharacter extends Component {
       code: this.state.code
     })
     
+    clearInterval(this.state.timerRef)
+
     this.setState({showCounter: false});
     console.log("Code was handled");
   }
