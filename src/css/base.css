@@ -123,11 +123,17 @@ h1, h2, h3, h4 {
     position: relative;
     background: #a90329;
     color: #FFF1F0;
+    border-radius: 2px;
     border-left: 5px solid #6B0019;
     text-align: left;
     padding: 10px;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
-    text-shadow: 0 0 black;
+    text-shadow: 0px 1px 1px #6B0019;
+    -webkit-animation: fadein 0.3s;
+    -moz-animation: fadein 0.3s;
+     -ms-animation: fadein 0.3s;
+      -o-animation: fadein 0.3s;
+         animation: fadein 0.3s;
 
     &:before {
         font-family: Icons;
