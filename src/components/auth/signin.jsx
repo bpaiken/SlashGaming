@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Icon } from 'semantic-ui-react'
+import { Button, Form, Grid, Icon, Message } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import 'APP/css/auth.css'
 
@@ -10,6 +10,7 @@ class Signin extends Component {
 		
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
+		this.buildErrorMessage = this.buildErrorMessage.bind(this)
 	}
 	
 	handleSubmit(e) {
@@ -38,14 +39,27 @@ class Signin extends Component {
 			this.setState({ [fieldName]: e.target.value });
 		}
 	}
+
+	buildErrorMessage() {
+		if (this.props.errors.length >= 1) {
+			return (
+				// <Message negative> 
+				<span>
+					{this.props.errors}
+				</span>
+				// </Message>
+			)
+		}
+	}
 	
 	render() {
-			return (
-				<div className='signup-form'>
+		return (
+			<div className='signup-form'>
 					<Grid className='grid-center'>
 						<Grid.Column className='grid-column-auth'>
 							<h2>Sign In</h2>
 							<Form size='large' className='form-auth'>
+								{this.buildErrorMessage()}
 								<Form.Input icon='user' iconPosition='left' placeholder='Username' 
 									onChange={this.handleInputChange('username')} />
 								
@@ -68,14 +82,18 @@ class Signin extends Component {
 import { signinUser } from '../../actions/user_auth_actions'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
+import { clearErrors } from 'APP/actions/user_auth_actions'
 
-function mapStateToProps(state) {
-    return { errorMessage: '' }; // TODO: update with error slice of state
+function mapStateToProps({ errors }) {
+    return {
+			 errors: errors.userAuthErrors 
+			}; // TODO: update with error slice of state
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    signinUser: user => dispatch(signinUser(user))
+		signinUser: user => dispatch(signinUser(user)),
+		clearErrors: () => dispatch(clearErrors())
   }
 }
 
