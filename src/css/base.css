@@ -117,6 +117,80 @@ h1, h2, h3, h4 {
     }
 }
 
+/* Errors */
+
+.error {
+    position: relative;
+    background: #a90329;
+    color: #FFF1F0;
+    border-radius: 2px;
+    border-left: 5px solid #6B0019;
+    text-align: left;
+    padding: 10px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    text-shadow: 0px 1px 1px #6B0019;
+    -webkit-animation: fadein 0.3s;
+    -moz-animation: fadein 0.3s;
+     -ms-animation: fadein 0.3s;
+      -o-animation: fadein 0.3s;
+         animation: fadein 0.3s;
+
+    &:before {
+        font-family: Icons;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        content: "\f071";
+        margin-right: 10px;
+    }
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.errorable {
+    position: relative;
+    &.display-error-true {
+        .form-error {
+            display: block;
+            -webkit-animation: fadein 0.3s;
+            -moz-animation: fadein 0.3s;
+             -ms-animation: fadein 0.3s;
+              -o-animation: fadein 0.3s;
+                 animation: fadein 0.3s;
+        }
+    }
+    .form-error {
+        display: none;
+        position: absolute;
+        top: -34px;
+        left: 4px;
+        background: #a90329;
+        color: #FFF1F0;
+        padding: 5px 9px 5px 9px;
+        border-radius: 5px;
+        font-size: 11px;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+        text-shadow: 0px 1px 1px #6B0019;
+        border-left: 3px solid #6B0019;
+
+        &:after {
+            content: "";
+            position: absolute;
+            bottom: -7px;
+            left: 11px;
+            border-width: 7px 7px 0;
+            border-style: solid;
+            border-color: #a90329 transparent;
+            display: block;
+            width: 0;
+        }
+    }
+}
+
+
 /* Common */
 
 .points {
