@@ -11,12 +11,17 @@ class Signup extends React.Component {
 		this.state = { 
 			username: '',
 			password: '',
-			confirmPassword: ''
+			confirmPassword: '',
+			usernameError: '',
+			passwordError: '',
+			confirmPasswordError: ''
 		}
 
 		this.handleInputChange = this.handleInputChange.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
 	}
+
+	
 
 	handleSubmit(e) {
 		e.preventDefault();
@@ -61,32 +66,13 @@ class Signup extends React.Component {
 	}
 }
 
-// function validate(values) {
-//     const errors = {};
-    
-//     if (!values.username) {
-//         errors.username = 'Required'
-//     }
-    
-//     if (!values.password) {
-//         errors.password = 'Required'
-//     } else if (values.password !== values.passwordConfirm) {
-//         errors.password = 'Passwords must match';
-//     }
-    
-//     if (!values.passwordConfirm) {
-//         errors.passwordConfirm = 'Required'
-//     }
-    
-//     return errors;
-// }
-
-///// CONTAINER /////
 import { connect } from 'react-redux';
 import { signupUser } from '../../actions/user_auth_actions'
 
-function mapStateToProps(state) {
-  return { }
+function mapStateToProps({ errors }) {
+  return {
+		errors,
+	 }
 }
 
 const mapDispatchToProps = dispatch => {
