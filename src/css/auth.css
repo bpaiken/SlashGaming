@@ -1,7 +1,40 @@
-body > div,
-body > div > div,
 .signup-form {
   height: 100%;
+  position: relative;
+  
+  .grid-column-auth {
+    max-width: 450px;
+    margin-top: 20px;
+  
+  }
+  .form-auth {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid;
+  }
+  
+  span {
+    color: #f04747;
+    font-size: 15px;
+    position: absolute;
+    z-index: 1;
+  }
+
+  #response-error {
+    top: 14%;
+    right: 18%;
+    font-weight: bold;
+  }
+
+  #username-error {
+    top: 0px;
+    right: 49%;
+  }
+
+  #password-error{
+    top: 25%;
+    right: 54%;
+  }
 }
 
 .grid-center {
@@ -10,26 +43,5 @@ body > div > div,
   text-align: center;
 }
 
-.grid-column-auth {
-  max-width: 450px;
-  margin-top: 20px;
-}
 
-.form-auth {
-  padding: 20px;
-  border: 1px solid;
-  margin: auto;
-}
 
-.signup-form {
-
-  strong {
-    color: #f04747;
-    font-size: 18px;
-  }
-  
-  span {
-    color: #f04747;
-    font-size: 15px;
-  }
-}

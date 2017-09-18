@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Icon, Message } from 'semantic-ui-react'
+import { Button, Form, Grid, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { authMessages } from 'APP/util/error_messages'
 import 'APP/css/auth.css'
@@ -52,9 +52,7 @@ class Signin extends Component {
 		let { responseStatus } = this.props.errors
 		if (responseStatus) {
 			return (
-				<div className='error-message'>
-					<strong>{authMessages[responseStatus]}</strong>
-				</div>
+					<span id='response-error'>{authMessages[responseStatus]}</span>
 			);
 		}
 	}
@@ -81,10 +79,10 @@ class Signin extends Component {
 							<h2>Sign In</h2>
 							{this.handleError()}
 							<Form size='large' className='form-auth'>
-								<span className='error-message'>{this.state.usernameError}</span>
+								<span id='username-error'>{this.state.usernameError}</span>
 								<Form.Input icon='user' iconPosition='left' placeholder='Username' 
 									onChange={this.handleInputChange('username')} />
-								<span className='error-message'>{this.state.passwordError}</span>
+								<span id='password-error'>{this.state.passwordError}</span>
 								<Form.Input type='password' icon='lock' iconPosition='left' placeholder='Password' 
 									onChange={this.handleInputChange('password')} />  
 								<Button color='blue' fluid size='large' onClick={this.handleSubmit}>
