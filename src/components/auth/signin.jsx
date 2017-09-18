@@ -10,8 +10,8 @@ class Signin extends Component {
 		this.state = { 
 			username: '', 
 			password: '',
-			usernameError: '',
-			passwordError: ''
+			usernameError: false,
+			passwordError: false
 		};
 		
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,15 +28,15 @@ class Signin extends Component {
 
 		if (this.invalidUsername(this.state.username) || this.state.password === ''){
 			if (this.invalidUsername(this.state.username)) {
-				this.setState({ usernameError: 'invalid username...try another' })
+				this.setState({ usernameError: true })
 			}
-			if (this.state.password === '') this.setState({ passwordError: 'password can not be blank' })
+			if (this.state.password === '') this.setState({ passwordError: true })
 				return
 		}
 
 		this.setState({
-			usernameError: '',
-			passwordError: ''
+			usernameError: false,
+			passwordError: false
 		})
 
 		this.props.signinUser({
@@ -52,12 +52,16 @@ class Signin extends Component {
 		let { responseStatus } = this.props.errors
 		if (responseStatus) {
 			return (
-					<span id='response-error'>{authMessages[responseStatus]}</span>
+					<div className='error'>{authMessages[responseStatus]}</div>
 			);
 		}
 	}
 	
 	handleInputChange(fieldName) {
+		if(this.state[fieldName+"Error"]) {
+			this.state[fieldName+"Error"] = !this.state[fieldName+"Error"]
+		}
+
 		return (e) => {
 			this.setState({ [fieldName]: e.target.value });
 		}
@@ -79,12 +83,16 @@ class Signin extends Component {
 							<h2>Sign In</h2>
 							{this.handleError()}
 							<Form size='large' className='form-auth'>
-								<span id='username-error'>{this.state.usernameError}</span>
-								<Form.Input icon='user' iconPosition='left' placeholder='Username' 
-									onChange={this.handleInputChange('username')} />
-								<span id='password-error'>{this.state.passwordError}</span>
-								<Form.Input type='password' icon='lock' iconPosition='left' placeholder='Password' 
-									onChange={this.handleInputChange('password')} />  
+								<div className={'errorable display-error-' + this.state.usernameError}>
+									<Form.Input icon='user' iconPosition='left' placeholder='Username' 
+										onChange={this.handleInputChange('username')} />
+									<span className='form-error'>Hang on, you forgot your username</span>
+								</div>
+								<div className={'errorable display-error-' + this.state.passwordError}>
+									<Form.Input type='password' icon='lock' iconPosition='left' placeholder='Password' 
+										onChange={this.handleInputChange('password')} />  
+									<span className='form-error'>Hang on, you forgot your password</span>
+								</div>
 								<Button color='blue' fluid size='large' onClick={this.handleSubmit}>
 									<Icon name="sign in"/>Login
 								</Button>
