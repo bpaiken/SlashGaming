@@ -25,10 +25,10 @@ export const signoutCurrentUser = (nullUser) => {
   }
 }
 
-export const recieveErrors = ({ message }) => {
+export const recieveErrors = ({ status }) => {
   return {
     type: RECEIVE_USER_AUTH_ERRORS,
-    errors: message
+    status
   }
 }
 
@@ -43,14 +43,14 @@ export const signinUser = user => dispatch => {
   .then(response => {
     localStorage.setItem('token', response.data.token)
     return dispatch(receiveCurrentUser(response.data))
-  }, error => dispatch(recieveErrors(error.response.data)))
+  }, error => dispatch(recieveErrors(error.response)))
 }
 
 // as of right now, signup user does not automatically login user
 export const signupUser = user => dispatch => {
   return APIUtil.signupUser(user)
   .then(response => dispatch(receiveCurrentUser(response)), // this does nothing as of right now
-  error => dispatch(recieveErrors(error.response.data)))
+  error => dispatch(recieveErrors(error.response)))
 }
 
 export const signoutUser = () => (dispatch) => {

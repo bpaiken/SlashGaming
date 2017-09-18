@@ -1,20 +1,44 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Icon, Message } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import { authMessages } from 'APP/util/error_messages'
 import 'APP/css/auth.css'
 
 class Signin extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { username: '', password: '' };
+		this.state = { 
+			username: '', 
+			password: '',
+			usernameError: '',
+			passwordError: ''
+		};
 		
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
-		this.buildErrorMessage = this.buildErrorMessage.bind(this)
+		this.handleError = this.handleError.bind(this)
 	}
 	
+	componentDidMount() {
+		this.props.clearErrors()
+	}
+
 	handleSubmit(e) {
 		e.preventDefault();
+
+		if (this.invalidUsername(this.state.username) || this.state.password === ''){
+			if (this.invalidUsername(this.state.username)) {
+				this.setState({ usernameError: 'invalid username...try another' })
+			}
+			if (this.state.password === '') this.setState({ passwordError: 'password can not be blank' })
+				return
+		}
+
+		this.setState({
+			usernameError: '',
+			passwordError: ''
+		})
+
 		this.props.signinUser({
 			username: this.state.username, 
 			password: this.state.password
@@ -25,10 +49,11 @@ class Signin extends Component {
 	}
 	
 	handleError() {
-		if (this.props.errorMessage) {
+		let { responseStatus } = this.props.errors
+		if (responseStatus) {
 			return (
-				<div className='alert alert-danger'>
-					<strong>{this.props.errorMessage}</strong>
+				<div className='error-message'>
+					<strong>{authMessages[responseStatus]}</strong>
 				</div>
 			);
 		}
@@ -40,16 +65,12 @@ class Signin extends Component {
 		}
 	}
 
-	buildErrorMessage() {
-		if (this.props.errors.length >= 1) {
-			return (
-				// <Message negative> 
-				<span>
-					{this.props.errors}
-				</span>
-				// </Message>
-			)
+	invalidUsername(username) {
+		let pattern = new RegExp(/^[a-zA-Z][a-zA-Z_-]*$/);
+		if((username < 2 || username > 16) || !pattern.test(username)) {
+			return true
 		}
+		return false
 	}
 	
 	render() {
@@ -58,14 +79,14 @@ class Signin extends Component {
 					<Grid className='grid-center'>
 						<Grid.Column className='grid-column-auth'>
 							<h2>Sign In</h2>
+							{this.handleError()}
 							<Form size='large' className='form-auth'>
-								{this.buildErrorMessage()}
+								<span className='error-message'>{this.state.usernameError}</span>
 								<Form.Input icon='user' iconPosition='left' placeholder='Username' 
 									onChange={this.handleInputChange('username')} />
-								
+								<span className='error-message'>{this.state.passwordError}</span>
 								<Form.Input type='password' icon='lock' iconPosition='left' placeholder='Password' 
 									onChange={this.handleInputChange('password')} />  
-								
 								<Button color='blue' fluid size='large' onClick={this.handleSubmit}>
 									<Icon name="sign in"/>Login
 								</Button>
@@ -86,8 +107,8 @@ import { clearErrors } from 'APP/actions/user_auth_actions'
 
 function mapStateToProps({ errors }) {
     return {
-			 errors: errors.userAuthErrors 
-			}; // TODO: update with error slice of state
+			errors,
+		}
 }
 
 const mapDispatchToProps = dispatch => {

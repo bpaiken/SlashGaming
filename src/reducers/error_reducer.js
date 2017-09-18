@@ -5,19 +5,19 @@ import {
  } from 'APP/actions/user_auth_actions'
 
 const initialState = {
-  userAuthErrors: [],
-  verifyCharacterErrors: [],
+  responseStatus: null
 }
 
 const errorReducer = (state = initialState, action) => {
   let currentState = merge(state, {})
   switch (action.type) {
     case RECEIVE_USER_AUTH_ERRORS:
-      currentState.userAuthErrors.push(action.errors)
+      currentState.responseStatus = action.status
       return currentState
       
     case CLEAR_ERRORS:
-      return initialState
+      currentState.responseStatus = null
+      return currentState
       
     default:
       return state;
