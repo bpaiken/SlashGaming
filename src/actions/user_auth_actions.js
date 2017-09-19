@@ -1,16 +1,17 @@
 import * as APIUtil from '../util/user_auth_util'
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER'
-export const RECEIVE_USER_AUTH_ERRORS = 'RECEIVE_USER_AUTH_ERRORS'
+export const RECEIVE_RESPONSE_ERROR = 'RECEIVE_RESPONSE_ERROR'
 export const CLEAR_ERRORS = 'CLEAR_ERRORS'
 export const SIGNOUT_CURRENT_USER = 'SIGNOUT_CURRENT_USER'
 
+// TODO: signout not currently used
 const nullUser = {
   id: null,
   username: '',
   role: ''
 }
 
-export const receiveCurrentUser = ({ currentUser }) => {
+const receiveCurrentUser = ({ currentUser }) => {
   // response is under key 'current_user' vice currentUser
   return {
     type: RECEIVE_CURRENT_USER,
@@ -18,16 +19,16 @@ export const receiveCurrentUser = ({ currentUser }) => {
   }
 }
 
-export const signoutCurrentUser = (nullUser) => {
+const signoutCurrentUser = (nullUser) => {
   return {
     type: SIGNOUT_CURRENT_USER,
     currentUser: nullUser
   }
 }
 
-export const recieveErrors = ({ status }) => {
+const recieveErrors = ({ status }) => {
   return {
-    type: RECEIVE_USER_AUTH_ERRORS,
+    type: RECEIVE_RESPONSE_ERROR,
     status
   }
 }

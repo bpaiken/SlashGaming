@@ -56,7 +56,7 @@ class Signup extends React.Component {
 			password: this.state.password
 		})
 		.then(({ type }) => {
-			if (type === 'RECEIVE_USER_AUTH_ERRORS') {
+			if (type === 'RECEIVE_RESPONSE_ERROR') {
 				this.forceUpdate()
 				return
 			} 
