@@ -3,10 +3,10 @@ export const RECEIVE_VERIFIED_CHARACTER = 'RECEIVE_VERIFIED_CHARACTER'
 export const RECEIVE_RESPONSE_ERROR = 'RECEIVE_RESPONSE_ERROR'
 export const CLEAR_ERRORS = 'CLEAR_ERRORS'
 
-const recieveVerifiedCharacter = ({ character }) => {
+const recieveVerifiedCharacter = (character) => {
   return {
     type: RECEIVE_VERIFIED_CHARACTER,
-    character,
+    character
   }
 }
 

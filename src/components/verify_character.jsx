@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { Grid, Icon, Form, List, Button } from 'semantic-ui-react'
 import ReactCountdownClock from 'react-countdown-clock'
+import { charAuthMessages } from 'APP/util/error_messages'
 
 // Component specific css.
 import 'APP/css/verify_character.css';
@@ -15,28 +16,47 @@ class VerifyCharacter extends Component {
       timeElapsed: false,
       account: '',
       character: '',
-      code: ''
+      code: '',
+      codeError: false,
+      accountError: false,
+      characterError: false,
     };
     
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCode = this.handleCode.bind(this);
     this.timeElapsed = this.timeElapsed.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this)
+    this.displayResponseError = this.displayResponseError.bind(this)
+    this.resetState = this.resetState.bind(this)
   }
 
   componentWillUnmount() {
     clearInterval(this.state.timerRef)
   }
   
+  
+  // TODO: clearout previous entry
   handleSubmit(e) {
     e.preventDefault()
+    
+    if (
+      this.invalidCharName(this.state.character) ||
+      this.invalidAccountName(this.state.account)
+    ) {
+      if (this.invalidCharName(this.state.character)) this.setState({ characterError: true })
+        if (this.invalidAccountName(this.state.account)) this.setState({ accountError: true})
+          return
+    }
+    
+    this.props.clearErrors()
+    
     this.props.verifyCharacter({
       account: this.state.account,
       character: this.state.character
     })
-
+    
     this.setState({showCounter: true, countdown: this.state.timer});
-
+    
     // Interval to count down the text counter.
     var i = setInterval(() => {
       if(this.state.countdown <= 0) {
@@ -46,19 +66,31 @@ class VerifyCharacter extends Component {
       }
     }, 1000);
     this.setState({ timerRef: i })
+    
+    this.resetState()
   }
 
+  // TODO: clearout previous entry
   handleCode(e) {
     e.preventDefault()
 
+    if (this.invalidCode(this.state.code)) {
+      this.setState({ codeError: true})
+      return
+    }
+
     this.props.verifyCode({
       code: this.state.code
+    }).then(response => {
+      this.forceUpdate()
     })
     
     clearInterval(this.state.timerRef)
-
+    
     this.setState({showCounter: false});
     console.log("Code was handled");
+
+    this.resetState()
   }
 
   timeElapsed(e) {
@@ -70,11 +102,51 @@ class VerifyCharacter extends Component {
 
   handleInputChange(fieldName) {
     return (e) => {
+      this.setState({
+        characterError: false,
+        codeError: false,
+        accountError: false
+      })
       this.setState({ [fieldName]: e.target.value })
     }
   }
+
+  displayResponseError() {
+		let { responseStatus } = this.props.errors
+		if (responseStatus) {
+			return (
+					<div className='error'>{charAuthMessages[responseStatus]}</div>
+			);
+		}
+  }
   
-  // TODO: update the conditional logic to be based on a response from the server
+  // TODO: add correct regex to acount name and char name checks
+  invalidAccountName(accountName) {
+    if (accountName === '') return true
+    return false
+  }
+
+  invalidCharName(charName) {
+    if (charName === '') return true
+    return false    
+  }
+
+  invalidCode(code) {
+    if (code.length === 8) return false
+    return true
+  }
+
+  resetState() {
+    this.setState({
+      account: '',
+      character: '',
+      code: '',
+      codeError: false,
+      accountError: false,
+      characterError: false,
+    })
+  }
+  
   render() {
     return (
       
@@ -82,6 +154,7 @@ class VerifyCharacter extends Component {
         <Grid.Row>
           <Grid.Column>
             <h2><Icon name='add user' /> Verify character</h2>
+            { this.displayResponseError()}
             { (this.state.showCounter) ?
                 <div>
                   <div className="verify-counter">
@@ -94,17 +167,30 @@ class VerifyCharacter extends Component {
                       onComplete={this.timeElapsed} />
                   </div>
                   <Form size='large'>
-                    <Form.Input icon='code' iconPosition='left' 
-                      onChange={this.handleInputChange('code')} placeholder='Code'/>
+
+                    <div className={'errorable display-error-' + this.state.codeError}>
+                      <Form.Input icon='code' iconPosition='left' 
+                        onChange={this.handleInputChange('code')} placeholder='Code'/>
+                      <span className='form-error'>Hang on, code must be 8 characters</span>
+                    </div>
+                    
                     <Button color="blue" fluid size='large' onClick={this.handleCode}>Verify</Button>
                   </Form>
                 </div>
                 :
                 <Form size='large'>
-                  <Form.Input icon='vcard' iconPosition='left' 
-                    onChange={this.handleInputChange('account')} placeholder='Account'/>
-                  <Form.Input icon='user' iconPosition='left' 
-                    onChange={this.handleInputChange('character')} placeholder='Character name'/>  
+                  <div className={'errorable display-error-' + this.state.accountError}>
+                    <Form.Input icon='vcard' iconPosition='left' 
+                      onChange={this.handleInputChange('account')} placeholder='Account'/>
+                    <span className='form-error'>Hang on, invalid account name</span>
+                  </div>
+
+                  <div className={'errorable display-error-' + this.state.characterError}>
+                    <Form.Input icon='user' iconPosition='left' 
+                      onChange={this.handleInputChange('character')} placeholder='Character name'/>  
+                    <span className='form-error'>Hang on, invalid character name</span>
+                  </div>
+
                   <Button color="green" fluid size='large' onClick={this.handleSubmit}>Let's go</Button>
                 </Form>
             }
@@ -158,21 +244,22 @@ class VerifyCharacter extends Component {
   }
 }
 
-// export default VerifyCharacter
+
 ///// CONTAINER /////
 import { connect } from 'react-redux'
-import { verifyCharacter, verifyCode } from 'APP/actions/character_auth_actions.js'
+import { verifyCharacter, verifyCode, clearErrors } from 'APP/actions/character_auth_actions.js'
 
-const mapStateToProps = () => {
+const mapStateToProps = ({ errors }) => {
   return {
-
+    errors,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     verifyCharacter: character => dispatch(verifyCharacter(character)),
-    verifyCode: code => dispatch(verifyCode(code))
+    verifyCode: code => dispatch(verifyCode(code)),
+    clearErrors: () => dispatch(clearErrors())
   }
 }
 

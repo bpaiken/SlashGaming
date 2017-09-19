@@ -1,7 +1,7 @@
 import * as APIUtil from 'APP/util/character_util'
 export const RECEIVE_USER_CHARACTERS = 'RECEIVE_USER_CHARACTERS'
 
-const receieveUserCharacters = ({ characters }) => {
+const receieveUserCharacters = (characters) => {
   return {
     type: RECEIVE_USER_CHARACTERS,
     characters,
