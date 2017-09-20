@@ -1,11 +1,16 @@
 import React from 'react'
 import { Grid, Table, Label, Icon } from 'semantic-ui-react'
+import UpcomingEventList from 'APP/components/event_lists/upcoming_event_list.jsx'
+import ClosedEventList from 'APP/components/event_lists/closed_event_list.jsx'
+
 
 const Dashboard = (props) => {
   
   return (
     <div>
-      <Grid className="dashboard" container columns={1}>
+      <UpcomingEventList />
+      <ClosedEventList />
+      {/* <Grid className="dashboard" container columns={1}>
         <Grid.Row>
           <Grid.Column>
           <h2><Icon name='bell' /> Upcoming events</h2>
@@ -89,7 +94,7 @@ const Dashboard = (props) => {
       </Table>
           </Grid.Column>
         </Grid.Row>
-      </Grid>
+      </Grid> */}
     </div> 
   )
 }
