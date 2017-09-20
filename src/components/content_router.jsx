@@ -23,6 +23,8 @@ export default (props) => {
           <Route path='/dashboard' component={ RequireAuth(Dashboard) } />
           <Route path='/user/characters' component={ RequireAuth(Characters) } />
           <Route path='/user/verify-character' component={ RequireAuth(VerifyCharacter) } />
+          <Route path='/user/upcoming' component={ RequireAuth(Dashboard) } />
+          <Route path='/user/closed' component={ RequireAuth(Dashboard) } />
         </Switch>
       </div>
     </div>

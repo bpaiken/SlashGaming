@@ -6,6 +6,7 @@ import 'APP/css/menu.css'
 class SlashMenu extends React.Component {
   
   handleItemClick = (e, node) => {
+    // debugger
     this.props.history.push(node['data-path'])
     this.props.selectMenuTab(node.name)
     }
@@ -49,12 +50,12 @@ class SlashMenu extends React.Component {
             <Menu.Header>Events</Menu.Header>
 
             <Menu.Menu>
-              <Menu.Item name='upcoming' data-path='/' 
+              <Menu.Item name='upcoming' data-path='/user/upcoming' 
                 active={activeMenuTab === 'upcoming'} onClick={this.handleItemClick}>
                 <Icon name='bell' /> Upcoming events
               </Menu.Item>
               
-              <Menu.Item name='closed' data-path='/'
+              <Menu.Item name='closed' data-path='/user/closed'
                 active={activeMenuTab === 'closed'} onClick={this.handleItemClick}>
                 <Icon name='checkmark' /> Closed events
               </Menu.Item>
