@@ -8,6 +8,8 @@ import Signup from 'APP/components/auth/signup.jsx'
 import Signin from 'APP/components/auth/signin.jsx'
 import Feature from 'APP/components/feature.js'
 import VerifyCharacter from 'APP/components/verify_character.jsx'
+import UpcomingEventList from 'APP/components/event_lists/upcoming_event_list.jsx'
+import ClosedEventList from 'APP/components/event_lists/closed_event_list.jsx'
 
 export default (props) => {
 
@@ -17,14 +19,14 @@ export default (props) => {
       <Menu/>
       <div className='application-wrapper'>
         <Switch>
-          <Route  path='/signup' component={ Signup } />
-          <Route  path='/signin' component={ Signin } />
+          <Route path='/signup' component={ Signup } />
+          <Route path='/signin' component={ Signin } />
           <Route path='/feature' component={ RequireAuth(Feature) } />
           <Route path='/dashboard' component={ RequireAuth(Dashboard) } />
           <Route path='/user/characters' component={ RequireAuth(Characters) } />
           <Route path='/user/verify-character' component={ RequireAuth(VerifyCharacter) } />
-          <Route path='/user/upcoming' component={ RequireAuth(Dashboard) } />
-          <Route path='/user/closed' component={ RequireAuth(Dashboard) } />
+          <Route path='/user/upcoming' component={ RequireAuth(UpcomingEventList) } />
+          <Route path='/user/closed' component={ RequireAuth(ClosedEventList) } />
         </Switch>
       </div>
     </div>
