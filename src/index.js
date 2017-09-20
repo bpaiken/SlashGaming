@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
         currentUser: {
           id: decoded.user_id,
           username: decoded.sub,
-          role: decoded.role
+          role: decoded.role,
+          characters: [],
         }
       }
       store = configureStore(preloadedState)
