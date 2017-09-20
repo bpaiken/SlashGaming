@@ -1,8 +1,22 @@
 import React from 'react'
 import { Grid, Table, Label, Icon } from 'semantic-ui-react'
 
-const ClosedEventList = (props) => {
+const ClosedEventList = ({ events }) => {
   
+  const eventList = events.map( event => {
+    return (
+      <Table.Row>
+        <Table.Cell>
+          <Label color="green">
+            <Icon name='calendar' /> {event.start}
+          </Label>
+        </Table.Cell>
+        <Table.Cell><a href="#">{event.name}</a></Table.Cell>
+        <Table.Cell>{Math.floor((Math.random() * 20) + 1)}</Table.Cell>
+      </Table.Row>
+    )
+  })
+
   return (
     <div>
       <Grid className="dashboard" container columns={1}>
@@ -18,33 +32,7 @@ const ClosedEventList = (props) => {
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              <Table.Row>
-                <Table.Cell>
-                  <Label color="purple">
-                    <Icon name='trophy' /> Meanski
-                  </Label>
-                </Table.Cell>
-                <Table.Cell><a href="#">Some event</a></Table.Cell>
-                <Table.Cell><span className="points">+100</span></Table.Cell>
-              </Table.Row>
-              <Table.Row>
-              <Table.Cell>
-                <Label color="purple">
-                  <Icon name='trophy' /> Nokka
-                </Label>
-              </Table.Cell>
-              <Table.Cell><a href="#">Old event</a></Table.Cell>
-              <Table.Cell><span className="points">+50</span></Table.Cell>
-            </Table.Row>
-            <Table.Row>
-            <Table.Cell>
-              <Label color="purple">
-                <Icon name='trophy' /> Seirif
-              </Label>
-            </Table.Cell>
-            <Table.Cell><a href="#">Older event</a></Table.Cell>
-            <Table.Cell><span className="points">+250</span></Table.Cell>
-          </Table.Row>
+              {eventList}
             </Table.Body>
           </Table>
           </Grid.Column>
@@ -57,12 +45,14 @@ const ClosedEventList = (props) => {
 ///// CONTAINER /////
 import { connect } from 'react-redux'
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = ({ events }) => {
+  const eventList = []
+  Object.keys(events).forEach( eventKey => {
+    if (events[eventKey].status === 'closed') eventList.push(events[eventKey])
+  })
 
-  
-  
   return {
-    events: "an event"
+    events: eventList
   }
 }
 

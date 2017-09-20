@@ -1,7 +1,21 @@
 import React from 'react'
 import { Grid, Table, Label, Icon } from 'semantic-ui-react'
 
-const UpcomingEventList = (props) => {
+const UpcomingEventList = ({ events }) => {
+
+  const eventList = events.map( event => {
+    return (
+      <Table.Row>
+        <Table.Cell>
+          <Label color="green">
+            <Icon name='calendar' /> {event.start}
+          </Label>
+        </Table.Cell>
+        <Table.Cell><a href="#">{event.name}</a></Table.Cell>
+        <Table.Cell>{Math.floor((Math.random() * 20) + 1)}</Table.Cell>
+      </Table.Row>
+    )
+  })
   
   return (
     <div>
@@ -18,33 +32,7 @@ const UpcomingEventList = (props) => {
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              <Table.Row>
-                <Table.Cell>
-                  <Label color="green">
-                    <Icon name='calendar' /> Sep 1th 9 pm
-                  </Label>
-                </Table.Cell>
-                <Table.Cell><a href="#">Some event</a></Table.Cell>
-                <Table.Cell>11</Table.Cell>
-              </Table.Row>
-              <Table.Row>
-              <Table.Cell>
-              <Label color="green">
-                <Icon name='calendar' /> Sep 1th 9 pm
-              </Label>
-            </Table.Cell>
-            <Table.Cell><a href="#">Another event</a></Table.Cell>
-            <Table.Cell>54</Table.Cell>
-              </Table.Row>
-              <Table.Row>
-              <Table.Cell>
-              <Label color="green">
-                <Icon name='calendar' /> Sep 1th 9 pm
-              </Label>
-            </Table.Cell>
-            <Table.Cell><a href="#">Third event</a></Table.Cell>
-            <Table.Cell>23</Table.Cell>
-              </Table.Row>
+              {eventList}
             </Table.Body>
           </Table>
           </Grid.Column>
@@ -57,12 +45,14 @@ const UpcomingEventList = (props) => {
 ///// CONTAINER /////
 import { connect } from 'react-redux'
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = ({ events }) => {
+  const eventList = []
+  Object.keys(events).forEach( eventKey => {
+    if (events[eventKey].status === 'upcoming') eventList.push(events[eventKey])
+  })
 
-  
-  
   return {
-    events: "an event"
+    events: eventList
   }
 }
 
