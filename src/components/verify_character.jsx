@@ -67,10 +67,10 @@ class VerifyCharacter extends Component {
     }, 1000);
     this.setState({ timerRef: i })
     
+    // reset state needed for moving back and forth between the two forms
     this.resetState()
   }
 
-  // TODO: clearout previous entry
   handleCode(e) {
     e.preventDefault()
 
@@ -82,14 +82,14 @@ class VerifyCharacter extends Component {
     this.props.verifyCode({
       code: this.state.code
     }).then(response => {
-      this.forceUpdate()
+      if (response.status === 200) {
+        this.setState({showCounter: false});
+        clearInterval(this.state.timerRef)
+        console.log("Code was handled");
+      }
     })
     
-    clearInterval(this.state.timerRef)
-    
-    this.setState({showCounter: false});
-    console.log("Code was handled");
-
+    // Reset state needed for moving back and forth between the two forms
     this.resetState()
   }
 
@@ -98,6 +98,7 @@ class VerifyCharacter extends Component {
     // out because render will have been run, removing the clock
     // when it's trying to set its width.
     setTimeout(() => this.setState({showCounter: false}), 500);
+    // TODO: add 'Ran out of time' error
   }
 
   handleInputChange(fieldName) {
