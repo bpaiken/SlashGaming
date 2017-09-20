@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Icon } from 'semantic-ui-react'
+import { Menu, Icon, Dropdown } from 'semantic-ui-react'
 
 import 'APP/css/menu.css'
 
@@ -18,6 +18,7 @@ class SlashMenu extends React.Component {
             <Menu.Header>Account</Menu.Header>
             
             <Menu.Menu>
+
               <Menu.Item name='profile' data-path='/user'
                 active={activeMenuTab === 'profile'} onClick={this.handleItemClick}>
                 <Icon name='calendar' /> Profile
@@ -42,6 +43,12 @@ class SlashMenu extends React.Component {
                active={activeMenuTab === 'settings'} onClick={this.handleItemClick}>
                 <Icon name='setting' /> Settings
               </Menu.Item>
+
+              <Menu.Item name='signout' data-path='/'
+               onClick={this.props.signoutUser}>
+                <Icon name='sign out' /> Sign Out
+              </Menu.Item>
+
             </Menu.Menu>
           </Menu.Item>
           
@@ -69,6 +76,7 @@ class SlashMenu extends React.Component {
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { selectMenuTab } from 'APP/actions/display_actions'
+import { signoutUser } from 'APP/actions/user_auth_actions'
 
 const mapStateToProps = ({ display }) => {
   return {
@@ -78,7 +86,8 @@ const mapStateToProps = ({ display }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    selectMenuTab: activeMenuTab => dispatch(selectMenuTab(activeMenuTab))
+    selectMenuTab: activeMenuTab => dispatch(selectMenuTab(activeMenuTab)),
+    signoutUser: () => dispatch(signoutUser()),
   }
 }
 

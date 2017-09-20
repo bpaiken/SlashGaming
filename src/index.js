@@ -6,6 +6,9 @@ import configureStore from './store/store'
 
 document.addEventListener('DOMContentLoaded', () => {
   let store
+
+  // check local storage for auth token
+  // 'log user' if auth token has not expired
   const token = localStorage.getItem('token')
   if (token) {
     const claims = token.split('.')[1]
