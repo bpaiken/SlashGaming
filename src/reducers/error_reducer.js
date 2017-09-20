@@ -9,7 +9,7 @@ const initialState = {
 }
 
 const errorReducer = (state = initialState, action) => {
-  let currentState = merge(state, {})
+  let currentState = merge({}, state)
   switch (action.type) {
     case RECEIVE_RESPONSE_ERROR:
       currentState.responseStatus = action.status

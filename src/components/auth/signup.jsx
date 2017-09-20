@@ -57,7 +57,6 @@ class Signup extends React.Component {
 		})
 		.then(({ type }) => {
 			if (type === 'RECEIVE_RESPONSE_ERROR') {
-				this.forceUpdate()
 				return
 			} 
 			this.props.history.push('/signin')
