@@ -46,7 +46,6 @@ class Signin extends Component {
 		})
 		.then(({ type }) => {
 			if (type === 'RECEIVE_RESPONSE_ERROR') {
-				this.forceUpdate()
 				return
 			}
 			this.props.history.push('/dashboard')

@@ -4,15 +4,14 @@ export const RECEIVE_RESPONSE_ERROR = 'RECEIVE_RESPONSE_ERROR'
 export const CLEAR_ERRORS = 'CLEAR_ERRORS'
 export const SIGNOUT_CURRENT_USER = 'SIGNOUT_CURRENT_USER'
 
-// TODO: signout not currently used
 const nullUser = {
   id: null,
   username: '',
-  role: ''
+  role: '',
+  characters: []
 }
 
 const receiveCurrentUser = ({ currentUser }) => {
-  // response is under key 'current_user' vice currentUser
   return {
     type: RECEIVE_CURRENT_USER,
     currentUser,
@@ -22,7 +21,7 @@ const receiveCurrentUser = ({ currentUser }) => {
 const signoutCurrentUser = (nullUser) => {
   return {
     type: SIGNOUT_CURRENT_USER,
-    currentUser: nullUser
+    nullUser
   }
 }
 
@@ -47,7 +46,6 @@ export const signinUser = user => dispatch => {
   }, error => dispatch(recieveErrors(error.response)))
 }
 
-// as of right now, signup user does not automatically login user
 export const signupUser = user => dispatch => {
   return APIUtil.signupUser(user)
   .then(response => dispatch(receiveCurrentUser(response)), // this does nothing as of right now

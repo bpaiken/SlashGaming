@@ -7,20 +7,20 @@ import { RECEIVE_USER_CHARACTERS } from 'APP/actions/character_actions'
 
 import merge from 'lodash/merge'
 
-// const initialState = {
-//   id: null,
-//   username: '',
-//   role: '',
-//   characters: []
-// }
+const initialState = {
+  id: null,
+  username: '',
+  role: '',
+  characters: []
+}
 
 // Below initial state is for testing only
-const initialState = {
-        id: 1,
-        username: 'Seirif',
-        role: 'user',
-        characters: [1,2,3]
-    }
+// const initialState = {
+//         id: 1,
+//         username: 'Seirif',
+//         role: 'user',
+//         characters: [1,2,3]
+//     }
 
 const authReducer = (state = initialState, action) => {
   Object.freeze(state)
@@ -32,7 +32,7 @@ const authReducer = (state = initialState, action) => {
     
     // TODO: clear out currentUser info on logout
     case SIGNOUT_CURRENT_USER: 
-      return merge(currentState, action.currentUser)
+      return merge(currentState, action.nullUser)
 
     case RECEIVE_USER_CHARACTERS:
       action.characters.forEach(char => {
