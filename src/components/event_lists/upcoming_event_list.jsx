@@ -3,12 +3,28 @@ import { Grid, Table, Label, Icon } from 'semantic-ui-react'
 
 const UpcomingEventList = ({ events }) => {
 
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ]
+
   const eventList = events.map( event => {
+    let date = new Date(event.start)
     return (
-      <Table.Row>
+      <Table.Row key={event.id}>
         <Table.Cell>
           <Label color="green">
-            <Icon name='calendar' /> {event.start}
+            <Icon name='calendar' /> {`${months[date.getMonth()]} ${date.getDay()}; ${date.getHours()}:${date.getMinutes()}`}
           </Label>
         </Table.Cell>
         <Table.Cell><a href="#">{event.name}</a></Table.Cell>

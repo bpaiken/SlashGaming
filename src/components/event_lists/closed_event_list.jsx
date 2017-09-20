@@ -5,14 +5,14 @@ const ClosedEventList = ({ events }) => {
   
   const eventList = events.map( event => {
     return (
-      <Table.Row>
+      <Table.Row key={event.id}>
         <Table.Cell>
-          <Label color="green">
-            <Icon name='calendar' /> {event.start}
+          <Label color="purple">
+            <Icon name='trophy' /> { event.winner }
           </Label>
         </Table.Cell>
-        <Table.Cell><a href="#">{event.name}</a></Table.Cell>
-        <Table.Cell>{Math.floor((Math.random() * 20) + 1)}</Table.Cell>
+        <Table.Cell><a href="#">{ event.name }</a></Table.Cell>
+        <Table.Cell><span className="points">{ `+${event.points}` }</span></Table.Cell>
       </Table.Row>
     )
   })

@@ -17,6 +17,8 @@ const initialState = {
     status: "upcoming",
     start: '2017-09-11T10:12:25.002Z',
     end: '2017-10-15T10:12:25.002Z',
+    winner: '',
+    points: 100,
     createdAt: "2017-09-16T17:59:42.59622Z"
   },
   2: {
@@ -25,6 +27,8 @@ const initialState = {
     status: 'upcoming',
     start: '2017-09-16T10:12:25.002Z',
     end: '2017-10-18T10:12:25.002Z',
+    winner: '',
+    points: 50,
     createdAt: '2017-09-16T17:59:42.59622Z'
   },
   3: {
@@ -33,6 +37,8 @@ const initialState = {
     status: 'closed',
     start: '2017-09-19T10:12:25.002Z',
     end: '2017-10-21T10:12:25.002Z',
+    winner: 'Meanski',
+    points: 75,
     createdAt: '2017-09-16T17:59:42.59622Z'
   },
   4: {
@@ -41,6 +47,8 @@ const initialState = {
     status: 'closed',
     start: '2017-09-25T10:12:25.002Z',
     end: '2017-10-29T10:12:25.002Z',
+    winner: 'Nokka',
+    points: 50,
     createdAt: '2017-09-16T17:59:42.59622Z'
   }
 }
