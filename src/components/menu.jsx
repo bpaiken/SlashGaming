@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Icon, Dropdown } from 'semantic-ui-react'
+import { Menu, Icon } from 'semantic-ui-react'
 
 import 'APP/css/menu.css'
 
