@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { Link } from 'react-router-dom'
 import { Grid, Icon, Form, List, Button } from 'semantic-ui-react'
 import ReactCountdownClock from 'react-countdown-clock'
 import { charAuthMessages } from 'APP/util/error_messages'
@@ -20,6 +21,7 @@ class VerifyCharacter extends Component {
       codeError: false,
       accountError: false,
       characterError: false,
+      success: false
     };
     
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,7 +29,12 @@ class VerifyCharacter extends Component {
     this.timeElapsed = this.timeElapsed.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this)
     this.displayResponseError = this.displayResponseError.bind(this)
-    this.resetState = this.resetState.bind(this)
+    this.resetForm = this.resetForm.bind(this)
+    this.displaySuccess = this.displaySuccess.bind(this)
+  }
+
+  componentWillMount() {
+    this.props.clearErrors()
   }
 
   componentWillUnmount() {
@@ -38,7 +45,8 @@ class VerifyCharacter extends Component {
   // TODO: clearout previous entry
   handleSubmit(e) {
     e.preventDefault()
-    
+    this.setState({ success: false })
+
     if (
       this.invalidCharName(this.state.character) ||
       this.invalidAccountName(this.state.account)
@@ -55,7 +63,10 @@ class VerifyCharacter extends Component {
       character: this.state.character
     })
     
-    this.setState({showCounter: true, countdown: this.state.timer});
+    this.setState({
+      showCounter: true, 
+      countdown: this.state.timer,
+    });
     
     // Interval to count down the text counter.
     var i = setInterval(() => {
@@ -67,8 +78,8 @@ class VerifyCharacter extends Component {
     }, 1000);
     this.setState({ timerRef: i })
     
-    // reset state needed for moving back and forth between the two forms
-    this.resetState()
+    // resetForm is needed for moving back and forth between the two forms
+    this.resetForm()
   }
 
   handleCode(e) {
@@ -82,15 +93,27 @@ class VerifyCharacter extends Component {
     this.props.verifyCode({
       code: this.state.code
     }).then(response => {
-      if (response.status === 200) {
-        this.setState({showCounter: false});
+      
+      if (response.type === 'RECEIVE_VERIFIED_CHARACTER') {
+        // stop the timer
         clearInterval(this.state.timerRef)
-        console.log("Code was handled");
+        // clear out previous errors if there were any
+        if (this.props.errors.responseStatus) this.props.clearErrors()
+        // reset form and show success message
+        this.setState({ 
+          success: true,
+          showCounter: false,
+          account: '',
+          character: '',
+          code: '',
+          codeError: false,
+          accountError: false,
+          characterError: false
+         });
+      } else {
+        this.resetForm()
       }
     })
-    
-    // Reset state needed for moving back and forth between the two forms
-    this.resetState()
   }
 
   timeElapsed(e) {
@@ -120,8 +143,18 @@ class VerifyCharacter extends Component {
 			);
 		}
   }
+
+  displaySuccess() {
+    if (this.state.success) {
+      return (
+        <div className='success'>
+          Character verified! Check out all <Link to='/user/characters'>Your characters</Link>
+        </div>
+      )
+    }
+  }
   
-  // TODO: add correct regex to acount name and char name checks
+  // TODO: add correct regex to account name and char name checks
   invalidAccountName(accountName) {
     if (accountName === '') return true
     return false
@@ -137,7 +170,7 @@ class VerifyCharacter extends Component {
     return true
   }
 
-  resetState() {
+  resetForm() {
     this.setState({
       account: '',
       character: '',
@@ -155,6 +188,7 @@ class VerifyCharacter extends Component {
         <Grid.Row>
           <Grid.Column>
             <h2><Icon name='add user' /> Verify character</h2>
+            {this.displaySuccess()}
             { this.displayResponseError()}
             { (this.state.showCounter) ?
                 <div>
@@ -170,7 +204,7 @@ class VerifyCharacter extends Component {
                   <Form size='large'>
 
                     <div className={'errorable display-error-' + this.state.codeError}>
-                      <Form.Input icon='code' iconPosition='left' 
+                      <Form.Input icon='code' iconPosition='left' value={this.state.code}
                         onChange={this.handleInputChange('code')} placeholder='Code'/>
                       <span className='form-error'>Hang on, code must be 8 characters</span>
                     </div>

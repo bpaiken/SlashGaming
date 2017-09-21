@@ -100,6 +100,8 @@ h1, h2, h3, h4 {
 /* Forms */
 
 .ui.form {
+    padding: 20px;
+    margin-top: 10px;
     background: #1f1f29;
     border: none;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
@@ -118,6 +120,40 @@ h1, h2, h3, h4 {
     }
     .description {
         color: #6d788c;
+    }
+}
+
+/* Messages */
+
+.success {
+    position: relative;
+    background: rgb(144, 238, 144);
+    color: #006400;
+    border-radius: 2px;
+    border-left: 5px solid #006400;;
+    text-align: left;
+    padding: 10px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    -webkit-animation: fadein 0.3s;
+    -moz-animation: fadein 0.3s;
+     -ms-animation: fadein 0.3s;
+      -o-animation: fadein 0.3s;
+         animation: fadein 0.3s;
+
+    &:before {
+        font-family: Icons;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        content: "\f164";
+        margin-right: 10px;
+    } 
+    
+    a {
+        color: #006400;
+        text-decoration: underline;
+        cursor: pointer;
+        font-weight: bold;
     }
 }
 
