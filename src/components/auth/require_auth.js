@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
+import { refreshAuthToken } from 'APP/actions/user_auth_actions'
 
 export default function (ComposedComponent) {
     class Authentication extends Component {
@@ -20,14 +21,38 @@ export default function (ComposedComponent) {
             }
         }
 
+        // refresh the auth token if the expiration 
+        // is less than 10 minutes away
+        checkAuthToken() {
+           const now = new Date()
+           if (this.props.expiration - now < 600000) {
+               this.props.refreshAuthToken()
+           }
+        }
+
         render() {
+            this.checkAuthToken()
             return <ComposedComponent { ...this.props } />
         };
     };
 
-    function mapStateToProps(state) {
-        return { authenticated: state.currentUser.id };
+    ///// CONTAINER /////
+
+    function mapStateToProps({ currentUser }) {
+        return { 
+            authenticated: currentUser.id,
+            expiration: currentUser.exp
+         };
     }
 
-    return withRouter(connect(mapStateToProps)(Authentication))
+    const mapDispatchToProps = (dispatch) => {
+        return {
+            refreshAuthToken: () => dispatch(refreshAuthToken())
+        }
+    }
+
+    return withRouter(connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(Authentication))
 }

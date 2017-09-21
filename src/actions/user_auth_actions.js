@@ -3,6 +3,7 @@ export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER'
 export const RECEIVE_RESPONSE_ERROR = 'RECEIVE_RESPONSE_ERROR'
 export const CLEAR_ERRORS = 'CLEAR_ERRORS'
 export const SIGNOUT_CURRENT_USER = 'SIGNOUT_CURRENT_USER'
+export const RECEIVE_AUTH_TOKEN = `RECEIVE_AUTH_TOKEN`
 
 const nullUser = {
   id: null,
@@ -32,11 +33,18 @@ const recieveErrors = ({ status }) => {
   }
 }
 
+const receiveAuthToken = () => {
+  return {
+    type: RECEIVE_AUTH_TOKEN
+  }
+}
+
 export const clearErrors = () => {
   return {
     type: CLEAR_ERRORS,
   }
 }
+
 
 export const signinUser = user => dispatch => {
   return APIUtil.signinUser(user)
@@ -52,6 +60,14 @@ export const signupUser = user => dispatch => {
   error => dispatch(recieveErrors(error.response)))
 }
 
+export const refreshAuthToken = () => (dispatch) => {
+  return APIUtil.refreshAuthToken()
+  .then(response => {
+    localStorage.setItem('token', response.data.token)
+    return dispatch(receiveAuthToken())
+  })
+}
+
 export const signoutUser = () => (dispatch) => {
-  return dispatch(signoutCurrentUser(nullUser));
-};
+  return dispatch(signoutCurrentUser(nullUser))
+}

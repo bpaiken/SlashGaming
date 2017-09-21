@@ -1,6 +1,7 @@
 import { 
   RECEIVE_CURRENT_USER,
-  SIGNOUT_CURRENT_USER
+  SIGNOUT_CURRENT_USER,
+  RECEIVE_AUTH_TOKEN
 } from '../actions/user_auth_actions'
 import { RECEIVE_VERIFIED_CHARACTER } from 'APP/actions/character_auth_actions'
 import { RECEIVE_USER_CHARACTERS } from 'APP/actions/character_actions'
@@ -11,16 +12,19 @@ const initialState = {
   id: null,
   username: '',
   role: '',
-  characters: []
+  characters: [],
+  exp: null
 }
 
-// Below initial state is for testing only
-// const initialState = {
-//         id: 1,
-//         username: 'Seirif',
-//         role: 'user',
-//         characters: [1,2,3]
-//     }
+// decode auth token and add expiration to currentUser
+// slice of state.  This is more efficient than decoding the
+// token in the require auth component for token refresh
+const decodeTokenExpiration = function() {
+  const claims = localStorage.getItem('token').split('.')[1]
+  const decoded = JSON.parse(window.atob(claims))
+  const expiration = new Date((decoded.exp*1000))
+  return expiration
+}
 
 const authReducer = (state = initialState, action) => {
   Object.freeze(state)
@@ -28,7 +32,13 @@ const authReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case RECEIVE_CURRENT_USER: 
-			return merge(currentState, action.currentUser)
+      currentState = merge(currentState, action.currentUser)
+      currentState.exp = decodeTokenExpiration()
+      return currentState
+    
+    case RECEIVE_AUTH_TOKEN:
+      currentState.exp = decodeTokenExpiration()
+      return currentState
     
     // TODO: clear out currentUser info on logout
     case SIGNOUT_CURRENT_USER: 

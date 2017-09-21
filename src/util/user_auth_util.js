@@ -12,7 +12,10 @@ export const signupUser = ({username, password}) => {
    { username, password })
 }
 
-// // Placeholder - awaiting API endpoint
-// export const signoutUser = () => {
-//   return null
-// }
+export const refreshAuthToken = () => {
+  return axios.get(`${API_URL}/api/authenticate/refresh-token`, {
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    }
+  })
+}
