@@ -1,61 +1,65 @@
 import React from 'react'
 import { Grid, Table, Label, Icon } from 'semantic-ui-react'
 
-const UpcomingEventList = ({ events }) => {
+class UpcomingEventList extends React.Component {
 
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec"
-  ]
+  render() {
+    const events = this.props.events
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ]
 
-  const eventList = events.map( event => {
-    let date = new Date(event.start)
+    const eventList = events.map( event => {
+      let date = new Date(event.start)
+      return (
+        <Table.Row key={event.id}>
+          <Table.Cell>
+            <Label color="green">
+              <Icon name='calendar' /> {`${months[date.getMonth()]} ${date.getDay()}; ${date.getHours()}:${date.getMinutes()}`}
+            </Label>
+          </Table.Cell>
+          <Table.Cell><a href="#">{event.name}</a></Table.Cell>
+          <Table.Cell>{Math.floor((Math.random() * 20) + 1)}</Table.Cell>
+        </Table.Row>
+      )
+    })
+    
     return (
-      <Table.Row key={event.id}>
-        <Table.Cell>
-          <Label color="green">
-            <Icon name='calendar' /> {`${months[date.getMonth()]} ${date.getDay()}; ${date.getHours()}:${date.getMinutes()}`}
-          </Label>
-        </Table.Cell>
-        <Table.Cell><a href="#">{event.name}</a></Table.Cell>
-        <Table.Cell>{Math.floor((Math.random() * 20) + 1)}</Table.Cell>
-      </Table.Row>
+      <div>
+        <Grid className="dashboard" container columns={1}>
+          <Grid.Row>
+            <Grid.Column>
+            <h2><Icon name='bell' /> Upcoming events</h2>
+            <Table basic unstackable>
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell>Starting</Table.HeaderCell>
+                  <Table.HeaderCell>Name</Table.HeaderCell>
+                  <Table.HeaderCell>Participants</Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
+              <Table.Body>
+                {eventList}
+              </Table.Body>
+            </Table>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </div> 
     )
-  })
-  
-  return (
-    <div>
-      <Grid className="dashboard" container columns={1}>
-        <Grid.Row>
-          <Grid.Column>
-          <h2><Icon name='bell' /> Upcoming events</h2>
-          <Table basic unstackable>
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell>Starting</Table.HeaderCell>
-                <Table.HeaderCell>Name</Table.HeaderCell>
-                <Table.HeaderCell>Participants</Table.HeaderCell>
-              </Table.Row>
-            </Table.Header>
-            <Table.Body>
-              {eventList}
-            </Table.Body>
-          </Table>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </div> 
-  )
+  }
+
 }
 
 ///// CONTAINER /////
