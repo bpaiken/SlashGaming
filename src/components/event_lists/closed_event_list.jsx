@@ -5,7 +5,7 @@ import { fetchEvents } from 'APP/actions/event_actions'
 class ClosedEventList extends React.Component {
 
   componentDidMount() {
-    this.props.fetchEvents();
+    this.props.fetchEvents('closed');
   }
 
   render() {
@@ -69,7 +69,7 @@ const mapStateToProps = ({ events }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchEvents: () => dispatch(fetchEvents())
+    fetchEvents: (status) => dispatch(fetchEvents(status))
   }
 }
 

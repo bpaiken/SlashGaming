@@ -8,8 +8,8 @@ const receieveEvents = (events) => {
   }
 }
 
-export const fetchEvents = () => dispatch => {
-  return APIUtil.fetchEvents()
+export const fetchEvents = (status) => dispatch => {
+  return APIUtil.fetchEvents(status)
   .then(
     response => dispatch(receieveEvents(response.data)),
   )

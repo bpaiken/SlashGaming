@@ -2,8 +2,8 @@ import axios from 'axios'
 
 const API_URL = 'http://localhost:8090'
 
-export const fetchEvents = () => {
-  return axios.get(`${API_URL}/api/events`, {
+export const fetchEvents = (status) => {
+  return axios.get(`${API_URL}/api/events?status=${status}`, {
     headers: {
         Authorization: 'Bearer ' + localStorage.getItem('token')
     }
