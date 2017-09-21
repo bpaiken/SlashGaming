@@ -32,7 +32,7 @@ const authReducer = (state = initialState, action) => {
     
     // TODO: clear out currentUser info on logout
     case SIGNOUT_CURRENT_USER: 
-      return merge(currentState, action.nullUser)
+      return action.nullUser
 
     case RECEIVE_USER_CHARACTERS:
       action.characters.forEach(char => {
