@@ -3,7 +3,11 @@ import axios from 'axios'
 const API_URL = 'http://localhost:8090'
 
 export const fetchEvents = () => {
-  return axios.get(`${API_URL}/api/events`)
+  return axios.get(`${API_URL}/api/events`, {
+    headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('token')
+    }
+  })
 }
 
 export const createCharacterEvent = (event) => {

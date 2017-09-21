@@ -1,7 +1,12 @@
 import React from 'react'
 import { Grid, Table, Label, Icon } from 'semantic-ui-react'
+import { fetchEvents } from 'APP/actions/event_actions'
 
 class UpcomingEventList extends React.Component {
+
+  componentDidMount() {
+    this.props.fetchEvents();
+  }
 
   render() {
     const events = this.props.events
@@ -76,12 +81,13 @@ const mapStateToProps = ({ events }) => {
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     fetchUserCharacters: (userId) => dispatch(fetchUserCharacters(userId))
-//   }
-// }
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchEvents: () => dispatch(fetchEvents())
+  }
+}
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(UpcomingEventList)
