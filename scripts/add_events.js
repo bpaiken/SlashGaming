@@ -41,5 +41,5 @@ const events = {
   let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhY2Nlc3MiLCJleHAiOjE1MDYyODM5MTEsImlhdCI6MTUwNjE5NzUxMSwiaXNzIjoic2xhc2hnYW1pbmcubmV0IiwianRpIjoiMDJmOTg0NjgtYjczMy00YThkLTgzMDUtYzMwMWExZDZmOWE5IiwibmJmIjoxNTA2MTk3NTExLCJyb2xlIjoiYWRtaW4iLCJzdWIiOiJzZWlyaWYiLCJ1c2VyX2lkIjoxfQ.YtkUKmaiQPTWjezChFfa358OBCW2SNlwbQQyu2WnHYw"
   
 Object.keys(events).forEach(event => {
-  addEvents(event, token)
+  addEvents(events[event], token)
 })
