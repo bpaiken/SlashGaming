@@ -31,7 +31,7 @@ class UpcomingEventList extends React.Component {
         <Table.Row key={event.id}>
           <Table.Cell>
             <Label color="green">
-              <Icon name='calendar' /> {`${months[date.getMonth()]} ${date.getDay()}; ${date.getHours()}:${date.getMinutes()}`}
+              <Icon name='calendar' /> {`${months[date.getMonth()]} ${date.getDate()} - ${date.getHours()}:${date.getMinutes()}`}
             </Label>
           </Table.Cell>
           <Table.Cell><a href="#">{event.name}</a></Table.Cell>

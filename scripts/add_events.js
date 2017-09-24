@@ -5,6 +5,10 @@ const axios = require('axios')
 
 const API_URL = 'http://localhost:8090/api'
 
+const login = (username, password) => {
+  return axios.post(`${API_URL}/authenticate/user`, {username, password})
+}
+
 const addEvents = (events, token) => {
   return axios.post(`${API_URL}/events`, events,{
     headers: 
@@ -37,9 +41,28 @@ const events = {
   }
 }
   
-  // hard coding tokens
-  let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhY2Nlc3MiLCJleHAiOjE1MDYyODM5MTEsImlhdCI6MTUwNjE5NzUxMSwiaXNzIjoic2xhc2hnYW1pbmcubmV0IiwianRpIjoiMDJmOTg0NjgtYjczMy00YThkLTgzMDUtYzMwMWExZDZmOWE5IiwibmJmIjoxNTA2MTk3NTExLCJyb2xlIjoiYWRtaW4iLCJzdWIiOiJzZWlyaWYiLCJ1c2VyX2lkIjoxfQ.YtkUKmaiQPTWjezChFfa358OBCW2SNlwbQQyu2WnHYw"
+// hard coding tokens
+// let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhY2Nlc3MiLCJleHAiOjE1MDYyODM5MTEsImlhdCI6MTUwNjE5NzUxMSwiaXNzIjoic2xhc2hnYW1pbmcubmV0IiwianRpIjoiMDJmOTg0NjgtYjczMy00YThkLTgzMDUtYzMwMWExZDZmOWE5IiwibmJmIjoxNTA2MTk3NTExLCJyb2xlIjoiYWRtaW4iLCJzdWIiOiJzZWlyaWYiLCJ1c2VyX2lkIjoxfQ.YtkUKmaiQPTWjezChFfa358OBCW2SNlwbQQyu2WnHYw"
   
-Object.keys(events).forEach(event => {
-  addEvents(events[event], token)
-})
+// Object.keys(events).forEach(event => {
+//   addEvents(events[event], token)
+// })
+
+// TODO: extra arguments for options
+// username and password is taken from commandline when running script
+// $ node ./scripts/add_events.js calvin password
+let user = process.argv[2]
+let pass = process.argv[3]
+
+const test = {
+  name: "super amazeball crazy event",
+  start: "2017-10-22T10:12:25.002Z",
+  end: "2017-10-24T10:12:25.002Z"
+}
+
+login(user, pass).then(
+  resp => {
+    return addEvents(test, resp.data.token)
+  },
+  err => console.log(err)
+)
