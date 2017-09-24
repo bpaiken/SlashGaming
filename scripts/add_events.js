@@ -23,7 +23,9 @@ const adjectives = [
   "awesome",
   "crazy",
   "amazing",
-  "sick"
+  "sick",
+  "great",
+  "best"
 ]
 
 const createMultEvents = (num, token) => {
@@ -37,7 +39,7 @@ const createMultEvents = (num, token) => {
     let date = Math.floor(Math.random() * 10) + 10
   
     addEvent({
-      name: `${adj1} ${adj2} ${adj3} event`,
+      name: `${adj1} ${adj2} ${adj3} event${i}`,
       start: `2017-10-${date}T10:12:25.002Z`,
       end: `2017-10-${date + Math.floor(Math.random() * 5)}T10:25:25.002Z`
     }, token).then(
