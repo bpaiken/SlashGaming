@@ -57,12 +57,12 @@ class SlashMenu extends React.Component {
             <Menu.Header>Events</Menu.Header>
 
             <Menu.Menu>
-              <Menu.Item name='upcoming' data-path='/user/upcoming' 
+              <Menu.Item name='upcoming' data-path='/events/upcoming' 
                 active={activeMenuTab === 'upcoming'} onClick={this.handleItemClick}>
                 <Icon name='bell' /> Upcoming events
               </Menu.Item>
               
-              <Menu.Item name='closed' data-path='/user/closed'
+              <Menu.Item name='closed' data-path='/events/closed'
                 active={activeMenuTab === 'closed'} onClick={this.handleItemClick}>
                 <Icon name='checkmark' /> Closed events
               </Menu.Item>

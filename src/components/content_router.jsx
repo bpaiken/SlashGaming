@@ -10,6 +10,7 @@ import Feature from 'APP/components/feature.js'
 import VerifyCharacter from 'APP/components/verify_character.jsx'
 import UpcomingEventList from 'APP/components/event_lists/upcoming_event_list.jsx'
 import ClosedEventList from 'APP/components/event_lists/closed_event_list.jsx'
+import Event from 'APP/components/event'
 
 export default (props) => {
 
@@ -25,8 +26,9 @@ export default (props) => {
           <Route path='/dashboard' component={ RequireAuth(Dashboard) } />
           <Route path='/user/characters' component={ RequireAuth(Characters) } />
           <Route path='/user/verify-character' component={ RequireAuth(VerifyCharacter) } />
-          <Route path='/user/upcoming' component={ RequireAuth(UpcomingEventList) } />
-          <Route path='/user/closed' component={ RequireAuth(ClosedEventList) } />
+          <Route path='/events/upcoming' component={ RequireAuth(UpcomingEventList) } />
+          <Route path='/events/closed' component={ RequireAuth(ClosedEventList) } />
+          <Route path='/events/:eventId' component={ RequireAuth(Event)} />
         </Switch>
       </div>
     </div>
