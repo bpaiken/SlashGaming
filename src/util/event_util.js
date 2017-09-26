@@ -36,3 +36,15 @@ export const fetchEvents = (status) => {
 //     }
 // })
 // }
+
+export const registerCharacter = (eventId, characterId) => {
+
+  return axios.post(`${API_URL}/api/events/${eventId}/characters`, {
+    character_id: characterId
+  }, 
+  {
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    }
+  })
+}

@@ -1,5 +1,5 @@
 import merge from 'lodash/merge'
-import { RECEIVE_EVENTS } from 'APP/actions/event_actions' 
+import { RECEIVE_EVENTS, RECEIVE_EVENT_CHARACTER } from 'APP/actions/event_actions' 
 
 // Below is for testing only
 // Format
@@ -65,6 +65,14 @@ const eventReducer = (state = initialState, action) => {
       const events = {}
       action.events.forEach(event => events[event.id] = event) 
       return merge(currentState, events)
+
+    case RECEIVE_EVENT_CHARACTER:
+      const event = currentState[action.eventId]
+      if (!event.participants) {
+        event.participants = []
+      }
+      event.participants.push(action.characterId)
+      return currentState      
       
     default:
       return state;

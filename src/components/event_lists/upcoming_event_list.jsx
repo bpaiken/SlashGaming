@@ -1,13 +1,14 @@
 import React from 'react'
 import { Grid, Table, Label, Icon } from 'semantic-ui-react'
 import { fetchEvents } from 'APP/actions/event_actions'
+import { Link } from 'react-router-dom'
 
 class UpcomingEventList extends React.Component {
 
   componentDidMount() {
     this.props.fetchEvents('upcoming');
   }
-
+  
   render() {
     const events = this.props.events
     const months = [
@@ -34,7 +35,7 @@ class UpcomingEventList extends React.Component {
               <Icon name='calendar' /> {`${months[date.getMonth()]} ${date.getDate()} - ${date.getHours()}:${date.getMinutes()}`}
             </Label>
           </Table.Cell>
-          <Table.Cell><a href="#">{event.name}</a></Table.Cell>
+          <Table.Cell><Link to={`/events/${event.id}`}>{event.name}</Link></Table.Cell>
           <Table.Cell>{Math.floor((Math.random() * 20) + 1)}</Table.Cell>
         </Table.Row>
       )

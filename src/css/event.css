@@ -1,0 +1,8 @@
+div.clickable {
+  display: inline-block !important;
+  cursor: pointer;
+  
+  &:hover {
+    color: grey;
+  }
+}

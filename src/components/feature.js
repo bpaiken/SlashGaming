@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import Event from 'APP/components/event'
+import CharacterList from 'APP/components/character_lists/user_selectable'
 
 class Feature extends Component {
     // Uncomment below & return when Authorized header
@@ -14,8 +16,8 @@ class Feature extends Component {
     render() {
         return (
             <div>
-                <div>{this.props.message}</div>
-                <div>If you see this, you are AUTHED</div>
+                <Event />
+                {/* <CharacterList selectable={true}/> */}
             </div>
         );
     }

@@ -54,7 +54,7 @@ class UserCharacterList extends React.Component {
                     <Table.Row key={character.id}>
                       <Table.Cell><Label className="deep-purple">{`Lvl ${character.level}`}</Label></Table.Cell>
                       <Table.Cell><a href="#">{character.name}</a></Table.Cell>
-                      <Table.Cell>{character.class}</Table.Cell>
+                      <Table.Cell>{character.classType}</Table.Cell>
                       <Table.Cell>{character.points}</Table.Cell>
                     </Table.Row>
                   )
