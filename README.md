@@ -1,1 +1,1 @@
-# Events GUI
+# SlashGaming Diablo 2 - Events GUI
