@@ -44,7 +44,7 @@ class Event extends React.Component {
       <Grid container stackable>
         <Grid.Row columns={2}>
           <Grid.Column>
-          <Button onClick={this.toggleCharacterList} fluid size='huge'>I'm In</Button>
+          <Button onClick={this.toggleCharacterList} fluid size='huge'>Register Character</Button>
           </Grid.Column>
           <Grid.Column>
           <h2>Event Info</h2>

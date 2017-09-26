@@ -6,3 +6,7 @@ div.clickable {
     color: grey;
   }
 }
+
+Button {
+  min-width: 302px;
+}
